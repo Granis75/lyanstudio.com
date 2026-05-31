@@ -31,4 +31,4 @@ https://lyanstudio.com
 - Check SEO metadata
 - Check OG image path
 - Confirm no legacy brand references
-- Confirm no origin or transition narrative
+- Confirm no legacy narrative
