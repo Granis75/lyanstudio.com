@@ -172,6 +172,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   text-align: center;
 }
 .product-preview p { max-width: 520px; font-weight: 700; letter-spacing: 0; }
+.product-preview--image {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  padding: 12px;
+  border-style: solid;
+  background: rgba(255,255,255,0.045);
+  place-items: stretch;
+}
+.product-preview--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 10px);
+  object-fit: cover;
+}
+.product-preview--image .preview-link {
+  justify-self: start;
+  margin-top: 2px;
+}
 .preview-link {
   display: inline-flex;
   align-items: center;
