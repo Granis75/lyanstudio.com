@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alcaisse Demo — Lyan Studio</title>
+  <meta name="description" content="Read-only static Alcaisse checkout demo showing product filtering, cart handling, payments and store views." />
+  <meta property="og:title" content="Alcaisse Demo — Lyan Studio" />
+  <meta property="og:description" content="Read-only static Alcaisse checkout demo for a local-first convenience POS product proof." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png" />
+  <link rel="canonical" href="https://www.lyanstudio.com/alcaisse-demo.html" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="demo-body">
+  <main class="demo-shell">
+    <div class="demo-topbar">
+      <a class="brand" href="index.html" aria-label="Lyan Studio home">
+        <span class="brand-mark">L</span>
+        <span>Lyan Studio</span>
+      </a>
+      <span class="demo-disclaimer">Read-only demo · Static product proof</span>
+      <a class="btn btn-secondary demo-exit" href="alcaisse.html">Product page</a>
+    </div>
+
+    <section class="pos-app" aria-label="Alcaisse checkout demo">
+      <aside class="pos-sidebar">
+        <div>
+          <h1>Alcaisse</h1>
+          <p>Convenience POS</p>
+        </div>
+        <nav class="pos-nav" aria-label="Demo views">
+          <button class="is-active" type="button" data-view="checkout">Caisse</button>
+          <button type="button" data-view="products">Produits</button>
+          <button type="button" data-view="stock">Stock</button>
+          <button type="button" data-view="reports">Rapports</button>
+        </nav>
+        <div class="pos-session">
+          <span>Session ouverte</span>
+          <strong>Caisse 1</strong>
+          <small>Local demo · No payment processing</small>
+        </div>
+      </aside>
+
+      <section class="pos-main">
+        <header class="pos-header">
+          <div>
+            <p class="tag">Alcaisse checkout</p>
+            <h2 data-view-title>Caisse</h2>
+          </div>
+          <div class="pos-status">
+            <span class="status-dot"></span>
+            Offline-ready direction
+          </div>
+        </header>
+
+        <div class="pos-message" data-message hidden>Sale completed — receipt ready</div>
+
+        <div class="pos-view is-active" data-panel="checkout">
+          <div class="checkout-grid">
+            <section class="checkout-products">
+              <div class="category-row" aria-label="Product categories"></div>
+              <div class="product-grid" data-products></div>
+            </section>
+
+            <aside class="cart-panel">
+              <div class="cart-head">
+                <h2>Panier</h2>
+                <button type="button" data-clear>Clear cart</button>
+              </div>
+              <div class="cart-lines" data-cart-lines></div>
+              <div class="cart-totals">
+                <div><span>Sous-total</span><strong data-subtotal>0,00 €</strong></div>
+                <div><span>Remise</span><strong data-discount>-0,00 €</strong></div>
+                <div class="total-row"><span>Total</span><strong data-total>0,00 €</strong></div>
+              </div>
+              <div class="payment-methods" aria-label="Payment methods">
+                <button class="is-selected" type="button" data-payment="Espèces">Espèces</button>
+                <button type="button" data-payment="Carte">Carte</button>
+                <button type="button" data-payment="Mobile">Mobile</button>
+              </div>
+              <button class="checkout-button" type="button" data-checkout>Encaisser</button>
+            </aside>
+          </div>
+
+          <div class="ops-cards">
+            <article><span>Dernière vente</span><strong data-last-sale>0,00 €</strong><p>Receipt summary appears after checkout.</p></article>
+            <article><span>Alertes stock</span><strong>3</strong><p>Items need reorder attention.</p></article>
+            <article><span>Session</span><strong>Ouverte</strong><p>Cash register ready for checkout.</p></article>
+          </div>
+        </div>
+
+        <div class="pos-view" data-panel="products"></div>
+        <div class="pos-view" data-panel="stock"></div>
+        <div class="pos-view" data-panel="reports"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const products = [
+      { name: "Coca-Cola 33cl", price: 1.5, category: "Boissons", stock: 18 },
+      { name: "Red Bull 25cl", price: 2.2, category: "Boissons", stock: 8 },
+      { name: "Kinder Bueno", price: 1.8, category: "Confiseries", stock: 21 },
+      { name: "Lay's Nature 45g", price: 1.3, category: "Snacks", stock: 6 },
+      { name: "Evian 50cl", price: 1.2, category: "Boissons", stock: 24 },
+      { name: "Baguette", price: 1.1, category: "Épicerie", stock: 2 },
+      { name: "M&M's 45g", price: 1.4, category: "Confiseries", stock: 12 },
+      { name: "Carte Prépayée 10€", price: 10, category: "Épicerie", stock: 9 },
+      { name: "Essuie-tout", price: 2.5, category: "Hygiène", stock: 3 }
+    ];
+    const categories = ["Tout", "Boissons", "Snacks", "Confiseries", "Épicerie", "Hygiène"];
+    const cart = new Map();
+    let category = "Tout";
+    let payment = "Espèces";
+    let lastSale = 0;
+
+    const format = (amount) => amount.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+    const productGrid = document.querySelector("[data-products]");
+    const categoryRow = document.querySelector(".category-row");
+    const cartLines = document.querySelector("[data-cart-lines]");
+    const subtotalEl = document.querySelector("[data-subtotal]");
+    const discountEl = document.querySelector("[data-discount]");
+    const totalEl = document.querySelector("[data-total]");
+    const lastSaleEl = document.querySelector("[data-last-sale]");
+    const messageEl = document.querySelector("[data-message]");
+
+    function renderCategories() {
+      categoryRow.innerHTML = categories.map((item) => `<button type="button" class="${item === category ? "is-selected" : ""}" data-category="${item}">${item}</button>`).join("");
+    }
+
+    function renderProducts() {
+      const visible = category === "Tout" ? products : products.filter((item) => item.category === category);
+      productGrid.innerHTML = visible.map((item) => `
+        <button class="pos-product" type="button" data-product="${item.name}">
+          <span>${item.category}</span>
+          <strong>${item.name}</strong>
+          <small>${format(item.price)}</small>
+        </button>
+      `).join("");
+    }
+
+    function renderCart() {
+      const lines = [...cart.values()];
+      if (!lines.length) {
+        cartLines.innerHTML = `<p class="empty-cart">Cart is empty. Select a product to start.</p>`;
+      } else {
+        cartLines.innerHTML = lines.map(({ product, qty }) => `
+          <div class="cart-line">
+            <div><strong>${product.name}</strong><span>${format(product.price)} · Qty ${qty}</span></div>
+            <button type="button" data-remove="${product.name}" aria-label="Decrease ${product.name}">−</button>
+          </div>
+        `).join("");
+      }
+      const subtotal = lines.reduce((sum, line) => sum + line.product.price * line.qty, 0);
+      const discount = subtotal >= 15 ? .5 : 0;
+      const total = Math.max(0, subtotal - discount);
+      subtotalEl.textContent = format(subtotal);
+      discountEl.textContent = `-${format(discount)}`;
+      totalEl.textContent = format(total);
+      return total;
+    }
+
+    function renderReadOnlyViews() {
+      document.querySelector('[data-panel="products"]').innerHTML = `
+        <div class="demo-table">
+          <h2>Produits</h2>
+          ${products.map((item) => `<div><span>${item.name}</span><span>${format(item.price)}</span><span>${item.category}</span><span>Actif</span></div>`).join("")}
+        </div>
+      `;
+      document.querySelector('[data-panel="stock"]').innerHTML = `
+        <div class="demo-table">
+          <h2>Stock</h2>
+          <div><span>Baguette</span><span>2 left</span><span>Low stock</span><span>Reorder today</span></div>
+          <div><span>Essuie-tout</span><span>3 left</span><span>Low stock</span><span>Supplier follow-up</span></div>
+          <div><span>Lay's Nature 45g</span><span>6 left</span><span>Watch</span><span>Next order</span></div>
+        </div>
+      `;
+      document.querySelector('[data-panel="reports"]').innerHTML = `
+        <div class="report-grid">
+          <article><span>Daily revenue</span><strong>${format(356.8)}</strong></article>
+          <article><span>Transactions</span><strong>42</strong></article>
+          <article><span>Average basket</span><strong>${format(8.5)}</strong></article>
+          <article><span>Last sales</span><strong>${lastSale ? format(lastSale) : "No sale yet"}</strong></article>
+        </div>
+      `;
+    }
+
+    function setView(view) {
+      const titles = { checkout: "Caisse", products: "Produits", stock: "Stock", reports: "Rapports" };
+      document.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.toggle("is-active", panel.dataset.panel === view));
+      document.querySelectorAll("[data-view]").forEach((button) => button.classList.toggle("is-active", button.dataset.view === view));
+      document.querySelector("[data-view-title]").textContent = titles[view];
+      renderReadOnlyViews();
+    }
+
+    categoryRow.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      category = button.dataset.category;
+      renderCategories();
+      renderProducts();
+    });
+
+    productGrid.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-product]");
+      if (!button) return;
+      const product = products.find((item) => item.name === button.dataset.product);
+      const existing = cart.get(product.name);
+      cart.set(product.name, { product, qty: existing ? existing.qty + 1 : 1 });
+      messageEl.hidden = true;
+      renderCart();
+    });
+
+    cartLines.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove]");
+      if (!button) return;
+      const line = cart.get(button.dataset.remove);
+      if (line.qty <= 1) cart.delete(button.dataset.remove);
+      else cart.set(button.dataset.remove, { product: line.product, qty: line.qty - 1 });
+      renderCart();
+    });
+
+    document.querySelector("[data-clear]").addEventListener("click", () => {
+      cart.clear();
+      messageEl.hidden = true;
+      renderCart();
+    });
+
+    document.querySelectorAll("[data-payment]").forEach((button) => {
+      button.addEventListener("click", () => {
+        payment = button.dataset.payment;
+        document.querySelectorAll("[data-payment]").forEach((item) => item.classList.toggle("is-selected", item === button));
+      });
+    });
+
+    document.querySelector("[data-checkout]").addEventListener("click", () => {
+      const total = renderCart();
+      if (!total) return;
+      lastSale = total;
+      lastSaleEl.textContent = `${format(total)} · ${payment}`;
+      messageEl.textContent = "Sale completed — receipt ready";
+      messageEl.hidden = false;
+      cart.clear();
+      renderCart();
+      renderReadOnlyViews();
+    });
+
+    document.querySelectorAll("[data-view]").forEach((button) => {
+      button.addEventListener("click", () => setView(button.dataset.view));
+    });
+
+    renderCategories();
+    renderProducts();
+    renderCart();
+    renderReadOnlyViews();
+  </script>
+</body>
+</html>
