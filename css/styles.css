@@ -92,6 +92,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .btn-secondary { background: rgba(244,246,248,0.02); border-color: var(--line); color: var(--text); }
 .btn-secondary:hover { border-color: var(--line-strong); background: rgba(244,246,248,0.055); }
 .proof-line { max-width: 760px; font-size: 1rem; color: var(--text-2); }
+.proof-line + .proof-line { margin-top: 8px; }
 .hero-panel, .tech-box, .cta-card, .case-card, .service-card-large, .contact-form, .contact-side, .featured-product {
   border: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(26,30,39,0.92), rgba(18,21,28,0.96));
