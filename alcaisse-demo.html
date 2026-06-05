@@ -38,7 +38,7 @@
         <div class="pos-session">
           <span>Session ouverte</span>
           <strong>Caisse 1</strong>
-          <small>Local demo · No payment processing</small>
+          <small>Local demo · Static mock data</small>
         </div>
       </aside>
 
@@ -178,9 +178,9 @@
       `;
       document.querySelector('[data-panel="reports"]').innerHTML = `
         <div class="report-grid">
-          <article><span>Daily revenue</span><strong>${format(356.8)}</strong></article>
-          <article><span>Transactions</span><strong>42</strong></article>
-          <article><span>Average basket</span><strong>${format(8.5)}</strong></article>
+          <article><span>Demo revenue</span><strong>${format(356.8)}</strong></article>
+          <article><span>Demo transactions</span><strong>42</strong></article>
+          <article><span>Demo basket</span><strong>${format(8.5)}</strong></article>
           <article><span>Last sales</span><strong>${lastSale ? format(lastSale) : "No sale yet"}</strong></article>
         </div>
       `;
