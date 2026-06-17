@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">Lyan Studio Open Graph image</title>
-  <desc id="desc">Dark premium Open Graph image for Lyan Studio with production-ready web applications text.</desc>
+  <desc id="desc">Dark premium Open Graph image for Lyan Studio with React delivery support text.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b1020"/>
@@ -40,8 +40,8 @@
 
   <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
     <text x="136" y="300" font-size="88" font-weight="850" letter-spacing="-3" fill="#f8fafc">Lyan Studio</text>
-    <text x="140" y="374" font-size="39" font-weight="700" letter-spacing="-0.6" fill="#dbe4f0">Production-ready web applications</text>
-    <text x="140" y="444" font-size="27" font-weight="750" letter-spacing="1.8" fill="#a9b4c5">MVPs · Internal tools · Custom software</text>
+    <text x="140" y="374" font-size="39" font-weight="700" letter-spacing="-0.6" fill="#dbe4f0">React delivery support</text>
+    <text x="140" y="444" font-size="27" font-weight="750" letter-spacing="1.8" fill="#a9b4c5">Dashboards · Portals · Internal tools</text>
   </g>
 
   <g fill="none" stroke="#f8fafc" stroke-opacity="0.16" stroke-width="1.5">
