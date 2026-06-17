@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alcaisse Demo — Lyan Studio</title>
-  <meta name="description" content="Read-only static Alcaisse checkout demo showing product filtering, cart handling, payments and store views." />
+  <meta name="description" content="Read-only static Alcaisse demo showing a local-first POS proof system for checkout, product filtering, stock and reporting views." />
   <link rel="canonical" href="https://www.lyanstudio.com/alcaisse-demo.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Alcaisse Demo — Lyan Studio" />
-  <meta property="og:description" content="Read-only static Alcaisse checkout demo for a local-first convenience POS product proof." />
+  <meta property="og:description" content="Read-only static Alcaisse demo for a local-first POS proof system and retail checkout workflow." />
   <meta property="og:url" content="https://www.lyanstudio.com/alcaisse-demo.html" />
   <meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Lyan Studio — Product-grade web applications" />
+  <meta property="og:image:alt" content="Lyan Studio — React delivery support for dashboards and internal tools" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Alcaisse Demo — Lyan Studio" />
-  <meta name="twitter:description" content="Read-only static Alcaisse checkout demo for a local-first convenience POS product proof." />
+  <meta name="twitter:description" content="Read-only static Alcaisse demo for a local-first POS proof system and retail checkout workflow." />
   <meta name="twitter:image" content="https://www.lyanstudio.com/assets/og-image.png" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -33,7 +33,7 @@
         <img src="/assets/logo/lyan-pictogram-dark.svg" alt="Lyan Studio" class="brand-logo" />
         <span>Lyan Studio</span>
       </a>
-      <span class="demo-disclaimer">Read-only demo · Static product proof</span>
+      <span class="demo-disclaimer">Read-only demo · Local-first POS proof system</span>
       <a class="btn btn-secondary demo-exit" href="alcaisse.html">Product page</a>
     </div>
 
@@ -41,7 +41,7 @@
       <aside class="pos-sidebar">
         <div>
           <h1>Alcaisse</h1>
-          <p>Convenience POS</p>
+          <p>Retail checkout and stock workflow</p>
         </div>
         <nav class="pos-nav" aria-label="Demo views">
           <button class="is-active" type="button" data-view="checkout">Caisse</button>
@@ -99,7 +99,7 @@
 
           <div class="ops-cards">
             <article><span>Dernière vente</span><strong data-last-sale>0,00 €</strong><p>Receipt summary appears after checkout.</p></article>
-            <article><span>Alertes stock</span><strong>3</strong><p>Items need reorder attention.</p></article>
+            <article><span>Alertes stock</span><strong>Demo</strong><p>Sample items need reorder attention.</p></article>
             <article><span>Session</span><strong>Ouverte</strong><p>Cash register ready for checkout.</p></article>
           </div>
         </div>
@@ -192,10 +192,10 @@
       `;
       document.querySelector('[data-panel="reports"]').innerHTML = `
         <div class="report-grid">
-          <article><span>Demo revenue</span><strong>${format(356.8)}</strong></article>
-          <article><span>Demo transactions</span><strong>42</strong></article>
-          <article><span>Demo basket</span><strong>${format(8.5)}</strong></article>
-          <article><span>Last sales</span><strong>${lastSale ? format(lastSale) : "No sale yet"}</strong></article>
+          <article><span>Report mode</span><strong>Static demo</strong></article>
+          <article><span>Data source</span><strong>Mock products</strong></article>
+          <article><span>Inventory view</span><strong>Sample stock</strong></article>
+          <article><span>Last sale</span><strong>${lastSale ? format(lastSale) : "No sale yet"}</strong></article>
         </div>
       `;
     }
