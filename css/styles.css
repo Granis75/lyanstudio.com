@@ -794,13 +794,31 @@ button:focus-visible {
   .image-break img {
     max-width: 520px;
   }
+
+  .article-page,
+  .article-header,
+  .article-figure,
+  .article-body,
+  .related-article {
+    width: 100%;
+    max-width: calc(100vw - 40px);
+  }
+
+  .article-page h1 {
+    font-size: clamp(2.25rem, 7vw, 4rem);
+    overflow-wrap: break-word;
+  }
+
+  .article-byline {
+    display: grid;
+  }
 }
 
 @media (max-width: 700px) {
   .container,
   .site-header,
   .site-footer {
-    width: min(100% - 28px, var(--max));
+    width: min(calc(100% - 28px), var(--max));
   }
 
   .site-header {
@@ -860,6 +878,35 @@ button:focus-visible {
   .article-card img {
     width: calc(100% + 40px);
     margin: -20px -20px 22px;
+  }
+
+  .article-page,
+  .article-header,
+  .article-figure,
+  .article-body,
+  .related-article {
+    width: 100%;
+    max-width: calc(100vw - 28px);
+  }
+
+  .article-page h1 {
+    font-size: clamp(2.25rem, 11vw, 3.4rem);
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .article-dek,
+  .article-body,
+  .article-byline,
+  .article-byline span,
+  .article-byline time {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .article-byline {
+    display: grid;
   }
 
   .section-heading h2,

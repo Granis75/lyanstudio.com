@@ -5,7 +5,6 @@ const root = process.cwd();
 const files = [
   'index.html',
   'journal.html',
-  'article.html',
   'journal/player-experience.html',
   'journal/athlete-flow.html',
   'journal/fgc-freeplay.html',

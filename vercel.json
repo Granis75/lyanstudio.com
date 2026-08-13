@@ -1,4 +1,71 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/article.html",
+      "destination": "/journal.html",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/work.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cases.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/work/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/software/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

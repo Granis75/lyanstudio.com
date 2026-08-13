@@ -57,7 +57,7 @@ const articles = [
     excerpt: 'Player experience is an operational layer: transport, accreditation, practice access, timing and communication all shape the day before competition begins.',
     image: 'assets/journal/journal-player-experience.png',
     imageAlt: 'Players waiting backstage before competition.',
-    author: 'Lyan Studio Journal',
+    author: 'Anis Allouache · Lyan Studio',
     date: 'August 13, 2026',
     readingTime: '3 min read',
     pullQuote: 'The strongest event operations are often the least visible.',
@@ -88,7 +88,7 @@ const articles = [
     excerpt: 'Athlete flow depends on clear timing, clear movement and reliable points of contact, especially in the hours before competition.',
     image: 'assets/journal/journal-athlete-flow.png',
     imageAlt: 'Athlete seated backstage before competition.',
-    author: 'Lyan Studio Journal',
+    author: 'Anis Allouache · Lyan Studio',
     date: 'August 13, 2026',
     readingTime: '3 min read',
     pullQuote: 'The scale changes. The underlying human problem does not.',
@@ -124,7 +124,7 @@ const articles = [
     excerpt: 'Freeplay areas need enough structure to work, but enough openness for the community to make them its own.',
     image: 'assets/journal/journal-fgc-freeplay.png',
     imageAlt: 'Players gathered around fighting-game freeplay setups at a live event.',
-    author: 'Lyan Studio Journal',
+    author: 'Anis Allouache · Lyan Studio',
     date: 'August 13, 2026',
     readingTime: '3 min read',
     pullQuote: '',
@@ -235,65 +235,6 @@ function renderArticleCards(selector = '[data-article-list]') {
   `).join('');
 }
 
-function renderJournalPage() {
-  const list = document.querySelector('[data-journal-page-list]');
-  if (!list) return;
-  renderArticleCards('[data-journal-page-list]');
-}
-
-function hydrateArticlePage() {
-  const articleRoot = document.querySelector('[data-article-page]');
-  if (!articleRoot) return;
-
-  const params = new URLSearchParams(window.location.search);
-  const pathSlug = window.location.pathname.match(/\/journal\/([^/]+)\.html$/)?.[1];
-  const slug = pathSlug || params.get('post') || articles[0].slug;
-  const articleIndex = Math.max(0, articles.findIndex((item) => item.slug === slug));
-  const article = articles[articleIndex] || articles[0];
-  const nextArticle = articles[(articleIndex + 1) % articles.length];
-  const canonicalUrl = `https://www.lyanstudio.com/${articleUrl(article.slug)}`;
-
-  document.title = `${article.title} — Lyan Studio Journal`;
-  document.querySelector('meta[name="description"]')?.setAttribute('content', article.excerpt);
-  document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${article.title} — Lyan Studio Journal`);
-  document.querySelector('meta[property="og:description"]')?.setAttribute('content', article.excerpt);
-  document.querySelector('meta[property="og:image"]')?.setAttribute('content', `https://www.lyanstudio.com/${article.image}`);
-  document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
-  document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
-
-  articleRoot.innerHTML = `
-    <a class="article-back" href="${isJournalArticlePath() ? '../journal.html' : 'journal.html'}">Back to Journal</a>
-    <header class="article-header">
-      <p class="section-label">${escapeHtml(article.category)}</p>
-      <h1>${escapeHtml(article.title)}</h1>
-      <p class="article-dek">${escapeHtml(article.deck)}</p>
-      <div class="article-byline">
-        <span>${escapeHtml(article.author)}</span>
-        <span>${escapeHtml(article.date)}</span>
-        <span>${escapeHtml(article.readingTime)}</span>
-      </div>
-    </header>
-    <figure class="article-figure">
-      <img src="${escapeHtml(assetPath(article.image))}" alt="${escapeHtml(article.imageAlt)}" loading="eager" decoding="async" />
-    </figure>
-    <div class="article-body">
-      ${article.body.map((paragraph, index) => {
-        const pullQuote = article.pullQuote && index === Math.floor(article.body.length / 2)
-          ? `<aside class="pull-quote">${escapeHtml(article.pullQuote)}</aside>`
-          : '';
-        return `${pullQuote}<p>${inlineMarkup(paragraph)}</p>`;
-      }).join('')}
-    </div>
-    <aside class="related-article" aria-label="Related article">
-      <p class="section-label">Next Article</p>
-      <a href="${articleUrl(nextArticle.slug)}">
-        <span>${escapeHtml(nextArticle.category)} · ${escapeHtml(nextArticle.readingTime)}</span>
-        <strong>${escapeHtml(nextArticle.title)}</strong>
-      </a>
-    </aside>
-  `;
-}
-
 function initRevealObserver() {
   const revealItems = document.querySelectorAll('.reveal');
 
@@ -317,6 +258,4 @@ function initRevealObserver() {
 renderCapabilities();
 renderExperience();
 renderArticleCards();
-renderJournalPage();
-hydrateArticlePage();
 initRevealObserver();

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /files/
+Disallow: /lyan-brand-kit/
+
+Sitemap: https://www.lyanstudio.com/sitemap.xml
