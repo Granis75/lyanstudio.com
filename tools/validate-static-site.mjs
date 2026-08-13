@@ -1,8 +1,17 @@
 import { readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
 const root = process.cwd();
-const files = ['index.html', 'article.html', 'css/styles.css', 'js/main.js'];
+const files = [
+  'index.html',
+  'journal.html',
+  'article.html',
+  'journal/player-experience.html',
+  'journal/athlete-flow.html',
+  'journal/fgc-freeplay.html',
+  'css/styles.css',
+  'js/main.js'
+];
 const forbidden = [
   'React',
   'TypeScript',
@@ -15,7 +24,12 @@ const forbidden = [
   'StorePilot',
   'Alcaisse',
   'Kepler',
-  'Hire me'
+  'Hire me',
+  'future editorial space',
+  'article template',
+  'draft space',
+  'Open article template',
+  'Coming soon'
 ];
 
 for (const file of files) {
@@ -27,18 +41,33 @@ for (const file of files) {
   }
 }
 
-const imageRefs = files
+const htmlImageRefs = files
   .filter((file) => file.endsWith('.html'))
   .flatMap((file) => {
     const html = readFileSync(join(root, file), 'utf8');
-    return [...html.matchAll(/src="([^"]+\.(?:svg|png|jpg|jpeg|webp))"/g)].map((match) => match[1]);
+    return [...html.matchAll(/src="([^"]+\.(?:svg|png|jpg|jpeg|webp))"/g)].map((match) => ({
+      file,
+      imageRef: match[1]
+    }));
   });
 
-for (const imageRef of imageRefs) {
+for (const { file, imageRef } of htmlImageRefs) {
   if (imageRef.startsWith('http')) continue;
-  if (!existsSync(join(root, imageRef.replace(/^\//, '')))) {
-    throw new Error(`Missing referenced image: ${imageRef}`);
+  const imagePath = imageRef.startsWith('/')
+    ? join(root, imageRef.replace(/^\//, ''))
+    : join(root, dirname(file), imageRef);
+  if (!existsSync(imagePath)) {
+    throw new Error(`Missing referenced image in ${file}: ${imageRef}`);
   }
 }
 
-console.log(`Static homepage validation passed: ${imageRefs.length} local images checked.`);
+const script = readFileSync(join(root, 'js/main.js'), 'utf8');
+const dataImageRefs = [...script.matchAll(/image: '([^']+\.(?:svg|png|jpg|jpeg|webp))'/g)].map((match) => match[1]);
+
+for (const imageRef of dataImageRefs) {
+  if (!existsSync(join(root, imageRef))) {
+    throw new Error(`Missing article data image: ${imageRef}`);
+  }
+}
+
+console.log(`Static site validation passed: ${htmlImageRefs.length + dataImageRefs.length} local images checked.`);

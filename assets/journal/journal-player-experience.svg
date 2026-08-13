@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Player experience editorial image slot</title>
+  <desc id="desc">A neutral abstract editorial composition suggesting route planning, timing and backstage competition flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111413"/>
+      <stop offset="0.56" stop-color="#202420"/>
+      <stop offset="1" stop-color="#0d0f0f"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d8b46a" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#d8b46a" stop-opacity="0.86"/>
+      <stop offset="1" stop-color="#d8b46a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <path d="M0 780h1600" stroke="#f5f1e8" stroke-opacity=".1"/>
+  <path d="M0 240h1600" stroke="#f5f1e8" stroke-opacity=".08"/>
+  <path d="M250 0v1000M590 0v1000M940 0v1000M1300 0v1000" stroke="#f5f1e8" stroke-opacity=".055"/>
+  <rect x="180" y="190" width="430" height="112" fill="#f5f1e8" fill-opacity=".07" stroke="#f5f1e8" stroke-opacity=".14"/>
+  <rect x="180" y="340" width="580" height="84" fill="#85a9b7" fill-opacity=".1" stroke="#85a9b7" stroke-opacity=".28"/>
+  <rect x="180" y="462" width="340" height="84" fill="#f5f1e8" fill-opacity=".05" stroke="#f5f1e8" stroke-opacity=".12"/>
+  <rect x="860" y="250" width="560" height="360" fill="#050606" fill-opacity=".32" stroke="#f5f1e8" stroke-opacity=".14"/>
+  <path d="M890 560c92-66 188-126 286-179s188-87 270-103" fill="none" stroke="url(#warm)" stroke-width="5"/>
+  <circle cx="890" cy="560" r="10" fill="#d8b46a"/>
+  <circle cx="1176" cy="381" r="10" fill="#d8b46a"/>
+  <circle cx="1446" cy="278" r="10" fill="#d8b46a"/>
+  <rect x="180" y="718" width="1020" height="2" fill="url(#warm)"/>
+  <rect x="180" y="754" width="250" height="12" fill="#f5f1e8" fill-opacity=".22"/>
+  <rect x="470" y="754" width="156" height="12" fill="#f5f1e8" fill-opacity=".16"/>
+  <rect x="666" y="754" width="330" height="12" fill="#f5f1e8" fill-opacity=".2"/>
+</svg>
