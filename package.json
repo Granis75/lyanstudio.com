@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "node tools/validate-static-site.mjs"
+  },
+  "devDependencies": {}
+}
