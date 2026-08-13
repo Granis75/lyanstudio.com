@@ -17,7 +17,7 @@ const capabilities = [
   {
     title: 'Content & Event Coverage',
     summary: 'Documenting events, people and the culture surrounding them.',
-    points: ['Photography', 'Event coverage', 'Interviews', 'Editorial content', 'Behind-the-scenes stories']
+    points: ['Photography', 'Event coverage', 'Interviews', 'Editorial coverage', 'Behind-the-scenes stories']
   }
 ];
 
@@ -32,7 +32,7 @@ const experience = [
     title: 'Street Art & Urban Culture',
     role: 'Event Organization & Participant Relations',
     summary: 'On-site coordination, artist relations and operational support around street-art and urban-culture events in Algeria.',
-    meta: 'Algeria'
+    meta: 'Béjaïa, Algeria'
   },
   {
     title: 'Event & Venue Operations',
@@ -56,7 +56,7 @@ const articles = [
     deck: 'How clear movement, communication and backstage support help players focus on performance.',
     excerpt: 'Player experience is an operational layer: transport, accreditation, practice access, timing and communication all shape the day before competition begins.',
     image: 'assets/journal/journal-player-experience.png',
-    imageAlt: 'Player preparing backstage beside a practice setup before competition.',
+    imageAlt: 'Players waiting backstage before competition.',
     author: 'Lyan Studio Journal',
     date: 'August 13, 2026',
     readingTime: '3 min read',
@@ -72,7 +72,6 @@ const articles = [
       'But poorly managed operations can create distractions that have nothing to do with competition.',
       'The challenge becomes even greater at international events. Players may arrive from different countries, speak different languages and operate with different staff structures. Some travel with coaches and managers. Others arrive with a much smaller support system.',
       'Clear communication therefore matters as much as logistics.',
-      'The strongest event operations are often the least visible.',
       'When participant flows work correctly, nobody talks about them. Players simply move from one stage of their day to another without having to think about the system behind it.',
       'That invisibility is part of the job.',
       'As esports continues to adopt the production standards of major sports and entertainment events, player experience should be treated as part of event infrastructure — alongside broadcast, venue operations and competition management.',
@@ -88,7 +87,7 @@ const articles = [
     deck: 'The unseen corridors, calls and waiting spaces that shape an athlete’s preparation before the public moment.',
     excerpt: 'Athlete flow depends on clear timing, clear movement and reliable points of contact, especially in the hours before competition.',
     image: 'assets/journal/journal-athlete-flow.png',
-    imageAlt: 'Athlete in a gi seated backstage before entering a live competition area.',
+    imageAlt: 'Athlete seated backstage before competition.',
     author: 'Lyan Studio Journal',
     date: 'August 13, 2026',
     readingTime: '3 min read',
@@ -99,7 +98,7 @@ const articles = [
       'The athlete is preparing to perform.',
       'The event team has a different responsibility: making sure the environment around that preparation works.',
       'This is where athlete flow becomes important.',
-      'From competition experience and coaching environments, one thing becomes obvious quickly: athletes do not experience an event the same way spectators do.',
+      'Competition and coaching environments make one thing clear: athletes do not experience an event the same way spectators do.',
       'For spectators, waiting is part of the day.',
       'For an athlete, uncertainty around timing can affect an entire preparation routine.',
       'A delayed call, unclear information or unnecessary movement between different areas may seem like small operational details. For someone preparing to compete, they become another thing to process.',
@@ -107,8 +106,6 @@ const articles = [
       '**clear timing, clear movement and clear points of contact.**',
       'Athletes should know where they are expected, what happens next and who is responsible for communicating changes.',
       'The same principle applies whether the environment is a martial arts tournament, a fighting-game competition or another live sporting event.',
-      'The scale changes.',
-      'The underlying human problem does not.',
       'There is also an important difference between controlling athletes and supporting them.',
       'Strong participant operations should not become intrusive.',
       'The objective is to create enough structure that the athlete can stop thinking about logistics.',
@@ -130,7 +127,7 @@ const articles = [
     author: 'Lyan Studio Journal',
     date: 'August 13, 2026',
     readingTime: '3 min read',
-    pullQuote: 'For fighting-game events, the stage creates the highlights. Freeplay creates the community.',
+    pullQuote: '',
     body: [
       'The main stage may produce the biggest moments of a fighting-game tournament.',
       'But it is not necessarily where the culture lives.',
@@ -279,7 +276,7 @@ function hydrateArticlePage() {
     </figure>
     <div class="article-body">
       ${article.body.map((paragraph, index) => {
-        const pullQuote = index === Math.floor(article.body.length / 2)
+        const pullQuote = article.pullQuote && index === Math.floor(article.body.length / 2)
           ? `<aside class="pull-quote">${escapeHtml(article.pullQuote)}</aside>`
           : '';
         return `${pullQuote}<p>${inlineMarkup(paragraph)}</p>`;

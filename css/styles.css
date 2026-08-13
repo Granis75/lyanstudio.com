@@ -133,14 +133,12 @@ h3 {
 }
 
 .main-nav a,
-.site-footer a,
-.social-links a {
+.site-footer a {
   position: relative;
 }
 
 .main-nav a::after,
-.site-footer a::after,
-.social-links a::after {
+.site-footer a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -155,8 +153,7 @@ h3 {
 
 .main-nav a:hover::after,
 .main-nav a[aria-current="page"]::after,
-.site-footer a:hover::after,
-.social-links a:hover::after {
+.site-footer a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -552,14 +549,6 @@ h3 {
   font-weight: 560;
   line-height: 1;
   overflow-wrap: anywhere;
-}
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  color: var(--muted-strong);
-  font-size: 0.9rem;
 }
 
 .site-footer {
