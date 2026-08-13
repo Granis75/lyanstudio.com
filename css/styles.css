@@ -10,7 +10,7 @@
   --panel: #1c201e;
   --line: rgba(245, 241, 232, 0.16);
   --line-strong: rgba(245, 241, 232, 0.32);
-  --accent: #d8b46a;
+  --accent: #5d87ae;
   --accent-cool: #85a9b7;
   --max: 1180px;
 }
@@ -117,12 +117,6 @@ h3 {
   min-width: fit-content;
   font-weight: 620;
   line-height: 1;
-}
-
-.brand img {
-  width: 30px;
-  height: auto;
-  filter: invert(1);
 }
 
 .brand span {
@@ -389,7 +383,7 @@ h3 {
 
 .image-break-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 0.58fr) minmax(0, 1fr);
+  grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(28px, 6vw, 84px);
   padding: clamp(56px, 8vw, 96px) 0;
@@ -397,7 +391,7 @@ h3 {
 
 .image-break img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border: 1px solid var(--line);
 }
@@ -444,9 +438,9 @@ h3 {
 
 .journal-feature {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(300px, 1.08fr);
+  grid-template-columns: minmax(0, 1.24fr) minmax(300px, 0.76fr);
   align-items: end;
-  gap: clamp(28px, 6vw, 78px);
+  gap: clamp(34px, 7vw, 92px);
   margin-bottom: clamp(34px, 6vw, 74px);
 }
 
@@ -456,8 +450,9 @@ h3 {
 
 .journal-feature img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: 70% 42%;
   border: 1px solid var(--line);
 }
 
