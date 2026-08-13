@@ -24,27 +24,27 @@ const capabilities = [
 const experience = [
   {
     title: 'Red Bull BC One Algeria',
-    role: 'Event Operations & Athlete Support',
-    summary: 'Event organization, athlete assistance, participant coordination and photographer/media support.',
-    meta: 'Algeria · 2014–2016'
+    summary: 'Athlete support, participant coordination and media assistance around live competition operations.',
+    tags: ['Live Events', 'Athlete Experience', 'Media Support'],
+    meta: 'Algeria'
   },
   {
     title: 'Street Art & Urban Culture',
-    role: 'Event Organization & Participant Relations',
-    summary: 'On-site coordination, artist relations and operational support around street-art and urban-culture events in Algeria.',
+    summary: 'Artist relations, participant coordination and on-site support within street-art and urban-culture events.',
+    tags: ['Culture', 'Events', 'Participant Relations'],
     meta: 'Béjaïa, Algeria'
   },
   {
-    title: 'Event & Venue Operations',
-    role: 'Paris',
-    summary: 'Experience across events, venues and hospitality environments, including guest reception, crowd flows, event setup and on-site execution.',
-    meta: 'Paris · 2018–2020'
+    title: 'Live Events — Paris',
+    summary: 'Experience across venue operations, guest flows, event setup and on-site execution across multiple assignments.',
+    tags: ['Events', 'Venue Operations', 'Guest Experience'],
+    meta: 'Paris'
   },
   {
-    title: 'Competitive Sport',
-    role: 'Judo',
-    summary: 'National-level competitive background, 2nd Dan black belt, coaching and athlete development experience.',
-    meta: 'Algeria'
+    title: 'Combat Sports',
+    summary: 'Experience across competitions, workshops, training, coaching and athlete environments.',
+    tags: ['Sport', 'Coaching', 'Athlete Experience'],
+    meta: ''
   }
 ];
 
@@ -207,11 +207,13 @@ function renderExperience() {
   list.innerHTML = experience.map((item) => `
     <article class="experience-card reveal">
       <div>
-        <p class="card-kicker">${escapeHtml(item.role)}</p>
         <h3>${escapeHtml(item.title)}</h3>
         <p>${escapeHtml(item.summary)}</p>
+        <ul class="experience-tags">
+          ${item.tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}
+        </ul>
       </div>
-      <p class="experience-meta">${escapeHtml(item.meta)}</p>
+      ${item.meta ? `<p class="experience-meta">${escapeHtml(item.meta)}</p>` : ''}
     </article>
   `).join('');
 }
