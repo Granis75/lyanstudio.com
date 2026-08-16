@@ -1,23 +1,23 @@
 const capabilities = [
   {
     title: 'Event Operations',
-    summary: 'On-site coordination, field support and operational problem solving for events, competitions and live experiences.',
-    points: ['Event-day execution', 'Field coordination', 'Stakeholder coordination', 'Operational coordination', 'On-site support']
+    summary: 'Coordination and operational support across event preparation, on-site delivery and live execution.',
+    points: ['Event-day delivery', 'Field coordination', 'Stakeholder coordination', 'Operational follow-up', 'On-site support']
   },
   {
     title: 'Player & Athlete Services',
-    summary: 'Supporting players, athletes and participants before, during and after key event moments.',
-    points: ['Participant liaison', 'Player & athlete support', 'Arrivals and departures', 'Operational requests', 'On-site assistance']
+    summary: 'Supporting players, athletes and participants through clear communication, practical assistance and coordinated event-day services.',
+    points: ['Participant liaison', 'Player & athlete support', 'Arrival & on-site coordination', 'Operational requests', 'Event-day assistance']
   },
   {
     title: 'Guest & Participant Experience',
-    summary: 'Helping guests, participants, partners and teams move through the event with clear support.',
-    points: ['Guest services', 'Service delivery', 'Flows and journeys', 'On-site assistance', 'Problem resolution']
+    summary: 'Supporting guests and participants through clear communication, coordinated service, smooth flows and reliable on-site delivery.',
+    points: ['Guest relations', 'Participant support', 'Service delivery', 'Guest flows', 'On-site coordination']
   },
   {
-    title: 'Event Coverage',
-    summary: 'Complementary coverage for documenting live experiences, people and operational moments.',
-    points: ['Photography', 'Event coverage', 'Event content', 'Behind-the-scenes coverage', 'Live documentation']
+    title: 'On-site Services',
+    summary: 'Practical support for guests, participants and event teams, helping information, requests and services move efficiently across the venue.',
+    points: ['Guest support', 'Participant assistance', 'Information coordination', 'Flow support', 'Team liaison']
   }
 ];
 
@@ -26,24 +26,24 @@ const experience = [
     title: 'Red Bull BC One Algeria',
     summary: 'Athlete support, participant coordination and media assistance around live competition operations.',
     tags: ['Live Events', 'Athlete Experience', 'Media Support'],
-    meta: 'Algeria'
+    meta: ''
   },
   {
     title: 'Street Art & Urban Culture',
     summary: 'Artist relations, participant coordination and on-site support within street-art and urban-culture events.',
     tags: ['Culture', 'Events', 'Participant Relations'],
-    meta: 'Béjaïa, Algeria'
+    meta: ''
   },
   {
-    title: 'Live Events — Paris',
-    summary: 'Experience across venue operations, guest flows, event setup and on-site execution across multiple assignments.',
-    tags: ['Events', 'Venue Operations', 'Guest Experience'],
-    meta: 'Paris'
+    title: 'Live Event Operations',
+    summary: 'Operational assignments across major festivals, fashion and luxury events, public events and exhibitions. Major Festivals — Lollapalooza, Rock en Seine: spectator flow coordination, access operations and logistical support across guest and VIP areas. Luxury & Fashion — Paris Fashion Week: set-up coordination, backstage logistics and guest flow management. Public Events & Exhibitions: access coordination, zone operations and on-site event delivery.',
+    tags: ['Live Events', 'Guest Flows', 'Backstage Operations', 'VIP Operations'],
+    meta: ''
   },
   {
     title: 'Combat Sports',
-    summary: 'Experience across competitions, workshops, training, coaching and athlete environments.',
-    tags: ['Sport', 'Coaching', 'Athlete Experience'],
+    summary: 'Experience across competitions, workshops, training and coaching environments, with first-hand understanding of athlete needs, preparation and event-day dynamics.',
+    tags: ['Sport', 'Athlete Experience', 'Participant Support', 'Coaching'],
     meta: ''
   }
 ];
