@@ -1,23 +1,23 @@
 const capabilities = [
   {
     title: 'Event Operations',
-    summary: 'On-site coordination and operational support for events, competitions and live experiences.',
-    points: ['Event logistics', 'Venue support', 'Participant flows', 'Operational coordination', 'Day-of-event support']
+    summary: 'On-site coordination, field support and operational problem solving for events, competitions and live experiences.',
+    points: ['Event-day execution', 'Field coordination', 'Stakeholder coordination', 'Operational coordination', 'On-site support']
   },
   {
-    title: 'Player & Athlete Experience',
-    summary: 'Supporting athletes, players and participants before and during events.',
-    points: ['Participant liaison', 'Player & athlete support', 'Schedules and on-site coordination', 'Hospitality', 'Backstage support']
+    title: 'Player & Athlete Services',
+    summary: 'Supporting players, athletes and participants before, during and after key event moments.',
+    points: ['Participant liaison', 'Player & athlete support', 'Arrivals and departures', 'Operational requests', 'On-site assistance']
   },
   {
-    title: 'Guest & Partner Experience',
-    summary: 'Helping guests, creators, partners and teams navigate the event smoothly.',
-    points: ['Guest coordination', 'Hospitality', 'Partner support', 'On-site assistance', 'Experience management']
+    title: 'Guest & Participant Experience',
+    summary: 'Helping guests, participants, partners and teams move through the event with clear support.',
+    points: ['Guest services', 'Service delivery', 'Flows and journeys', 'On-site assistance', 'Problem resolution']
   },
   {
-    title: 'Content & Event Coverage',
-    summary: 'Documenting events, people and the culture surrounding them.',
-    points: ['Photography', 'Event coverage', 'Interviews', 'Editorial coverage', 'Behind-the-scenes stories']
+    title: 'Event Coverage',
+    summary: 'Complementary coverage for documenting live experiences, people and operational moments.',
+    points: ['Photography', 'Event coverage', 'Event content', 'Behind-the-scenes coverage', 'Live documentation']
   }
 ];
 
