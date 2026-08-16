@@ -36,7 +36,7 @@ const experience = [
   },
   {
     title: 'Live Event Operations',
-    summary: 'Operational assignments across major festivals, fashion and luxury events, public events and exhibitions. Major Festivals — Lollapalooza, Rock en Seine: spectator flow coordination, access operations and logistical support across guest and VIP areas. Luxury & Fashion — Paris Fashion Week: set-up coordination, backstage logistics and guest flow management. Public Events & Exhibitions: access coordination, zone operations and on-site event delivery.',
+    summary: 'Operational support across major festivals, fashion events and public-facing live experiences, including guest flows, backstage logistics and on-site coordination.',
     tags: ['Live Events', 'Guest Flows', 'Backstage Operations', 'VIP Operations'],
     meta: ''
   },
