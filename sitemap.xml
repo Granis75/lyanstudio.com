@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.lyanstudio.com/</loc>
-  </url>
-  <url>
-    <loc>https://www.lyanstudio.com/journal.html</loc>
-  </url>
-  <url>
-    <loc>https://www.lyanstudio.com/journal/player-experience.html</loc>
-  </url>
-  <url>
-    <loc>https://www.lyanstudio.com/journal/athlete-flow.html</loc>
-  </url>
-  <url>
-    <loc>https://www.lyanstudio.com/journal/fgc-freeplay.html</loc>
-  </url>
+  <url><loc>https://www.lyanstudio.com/about.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/alcaisse-demo.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/alcaisse.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/contact.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/</loc></url>
+  <url><loc>https://www.lyanstudio.com/legal.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/privacy.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/services.html</loc></url>
+  <url><loc>https://www.lyanstudio.com/work.html</loc></url>
 </urlset>

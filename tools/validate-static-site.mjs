@@ -1,72 +1,31 @@
-import { readFileSync, existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import assert from 'node:assert/strict';
 
-const root = process.cwd();
-const files = [
-  'index.html',
-  'journal.html',
-  'journal/player-experience.html',
-  'journal/athlete-flow.html',
-  'journal/fgc-freeplay.html',
-  'css/styles.css',
-  'js/main.js'
-];
-const forbidden = [
-  'React',
-  'TypeScript',
-  'Supabase',
-  'sprint',
-  'agency',
-  'Dashboards',
-  'portals',
-  'internal tools',
-  'StorePilot',
-  'Alcaisse',
-  'Kepler',
-  'Hire me',
-  'future editorial space',
-  'article template',
-  'draft space',
-  'Open article template',
-  'Coming soon'
-];
-
-for (const file of files) {
-  const content = readFileSync(join(root, file), 'utf8');
-  for (const term of forbidden) {
-    if (content.includes(term)) {
-      throw new Error(`${file} still contains forbidden visible term: ${term}`);
-    }
+const pages = readdirSync('.').filter((file) => file.endsWith('.html'));
+const requiredPages = ['index.html', 'work.html', 'services.html', 'about.html', 'contact.html', 'alcaisse.html', 'alcaisse-demo.html', 'legal.html', 'privacy.html'];
+for (const page of requiredPages) assert(pages.includes(page), `Missing page: ${page}`);
+const forbidden = /photography|graphic design portfolio|event agency|gaming|esports|live events|combat sports/i;
+let references = 0;
+for (const file of [...pages, 'js/main.js', 'assets/og-image.svg', 'site.webmanifest']) {
+  const content = readFileSync(file, 'utf8');
+  assert(!forbidden.test(content), `Unwanted positioning in ${file}`);
+  if (!file.endsWith('.html')) continue;
+  assert(content.includes('rel="canonical"'), `Missing canonical: ${file}`);
+  for (const [, ref] of content.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    if (/^(?:https?:|mailto:|tel:|data:|#)/.test(ref)) continue;
+    const path = ref.split(/[?#]/)[0];
+    const target = path.startsWith('/') ? resolve('.' + path) : resolve(dirname(file), path);
+    assert(existsSync(target), `Missing reference in ${file}: ${ref}`);
+    references++;
   }
 }
-
-const htmlImageRefs = files
-  .filter((file) => file.endsWith('.html'))
-  .flatMap((file) => {
-    const html = readFileSync(join(root, file), 'utf8');
-    return [...html.matchAll(/src="([^"]+\.(?:svg|png|jpg|jpeg|webp))"/g)].map((match) => ({
-      file,
-      imageRef: match[1]
-    }));
-  });
-
-for (const { file, imageRef } of htmlImageRefs) {
-  if (imageRef.startsWith('http')) continue;
-  const imagePath = imageRef.startsWith('/')
-    ? join(root, imageRef.replace(/^\//, ''))
-    : join(root, dirname(file), imageRef);
-  if (!existsSync(imagePath)) {
-    throw new Error(`Missing referenced image in ${file}: ${imageRef}`);
-  }
+const home = readFileSync('index.html', 'utf8');
+for (const term of ['Software Lab', 'software studio', 'StorePilot', 'Alcaisse', 'Kepler Express', 'dashboards', 'internal tools', 'React', 'TypeScript', 'Supabase']) {
+  assert(home.includes(term), `Missing software positioning: ${term}`);
 }
-
-const script = readFileSync(join(root, 'js/main.js'), 'utf8');
-const dataImageRefs = [...script.matchAll(/image: '([^']+\.(?:svg|png|jpg|jpeg|webp))'/g)].map((match) => match[1]);
-
-for (const imageRef of dataImageRefs) {
-  if (!existsSync(join(root, imageRef))) {
-    throw new Error(`Missing article data image: ${imageRef}`);
-  }
-}
-
-console.log(`Static site validation passed: ${htmlImageRefs.length + dataImageRefs.length} local images checked.`);
+const sitemap = readFileSync('sitemap.xml', 'utf8');
+for (const page of pages) assert(sitemap.includes(`https://www.lyanstudio.com/${page === 'index.html' ? '' : page}</loc>`), `Missing sitemap entry: ${page}`);
+const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
+for (const redirect of config.redirects ?? []) assert(!requiredPages.filter(p => p !== 'index.html').some(p => redirect.source === '/' + p), `Redirect hides restored page: ${redirect.source}`);
+console.log(`Software site validation passed: ${pages.length} pages, ${references} local references, positioning and sitemap checked.`);
