@@ -7,5 +7,7 @@
       "destination": "/",
       "permanent": true
     }
-  ]
+  ],
+  "cleanUrls": false,
+  "trailingSlash": false
 }
