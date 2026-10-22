@@ -1057,3 +1057,6 @@ input::placeholder, textarea::placeholder { color: #a0a0aa; }
   .product-shot { margin: -20px -20px 20px; }
 }
 @media (prefers-reduced-motion: reduce) { .btn:hover, .preview-link:hover, .pos-product:hover { transform: none; } }
+
+/* Single retained secondary product: avoid a lone narrow three-column card. */
+.labs-grid--single { grid-template-columns: minmax(0, 1fr); max-width: 760px; }

@@ -19,7 +19,7 @@ for (const page of requiredPages)
 for (const file of ["css/styles.css", "js/main.js"])
   assert(existsSync(file), `Missing asset: ${file}`);
 // Software vocabulary is allowed, including React, TypeScript, Supabase, PostgreSQL,
-// Tailwind, Vercel, Dashboards, portals, internal tools, StorePilot, Alcaisse and Kepler.
+// Tailwind, Vercel, Dashboards, portals, internal tools, MyBi, AlCaisse and Kepler.
 // Only public pages and assets are scanned; never Git, backups or historical docs.
 const forbidden =
   /photography|selected projects|behance|graphic design portfolio|event agency|gaming|esports|live events|combat sports|event operations|player & athlete services|guest & participant experience|on-site services/i;
@@ -82,6 +82,16 @@ const titles = pages.map(
   (p) => readFileSync(p, "utf8").match(/<title>([^]*?)<\/title>/)[1],
 );
 assert.equal(new Set(titles).size, pages.length, "Page titles must be unique");
+for (const page of ["index.html", "work.html"]) {
+  const body = readFileSync(page, "utf8");
+  for (const retired of ["StorePilot", "OpsCore", "Lyan & Co", "Vesper"]) {
+    assert(!body.includes(retired), `Retired project ${retired} promoted in ${page}`);
+  }
+  for (const current of ["StayOps", "MyBi", "AlCaisse", "Kepler Express"]) {
+    assert(body.includes(current), `Current project ${current} missing from ${page}`);
+  }
+}
+
 for (const page of pages) {
   const content = readFileSync(page, "utf8");
   const canonical = page === "index.html" ? "" : page;
@@ -106,7 +116,7 @@ for (const page of pages) {
 const home = readFileSync("index.html", "utf8");
 for (const term of [
   "Operational Software Studio",
-  "StorePilot",
+  "MyBi",
   "StayOps",
   "Alcaisse",
   "Kepler Express",

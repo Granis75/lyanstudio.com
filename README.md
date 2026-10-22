@@ -2,6 +2,15 @@
 
 Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analytics script or production dependency is required.
 
+## Current portfolio (22 October 2026)
+
+- **StayOps** — active hotel team operations software in development.
+- **MyBi** — operational business management tool in use by its creator.
+- **Kepler Express** — retained logistics operations reference implementation.
+- **AlCaisse** — offline POS prototype, pending testing on physical hardware.
+
+StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are intentionally not promoted on this website. Their source histories remain in their separate repositories. Product descriptions do not imply customer adoption or production certification.
+
 ## Local development
 
 Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory and open `http://127.0.0.1:4173/`.
