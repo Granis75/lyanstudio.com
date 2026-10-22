@@ -118,7 +118,7 @@ for (const term of [
   "Operational Software Studio",
   "MyBi",
   "StayOps",
-  "Alcaisse",
+  "AlCaisse",
   "Kepler Express",
   "dashboards",
   "internal tools",
