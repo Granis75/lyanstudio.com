@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlCaisse Web Lab — Produits | Lyan Studio</title>
+<meta name="description" content="Essayer AlCaisse Web Lab : Consulter et enregistrer des produits de démonstration. Application fictive dans le navigateur, sans paiement réel ni synchronisation serveur.">
+<link rel="canonical" href="https://www.lyanstudio.com/alcaisse/products.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AlCaisse Web Lab — Produits">
+<meta property="og:description" content="Démonstration interactive de caisse en DZD, ventes, stock, rapports et sessions. Données fictives locales.">
+<meta property="og:url" content="https://www.lyanstudio.com/alcaisse/products.html">
+<meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AlCaisse Web Lab — Produits">
+<meta name="twitter:description" content="Simulation interactive de caisse, transactions et gestion de stock en DZD.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#182e2b">
+<link rel="stylesheet" href="/alcaisse/styles.css">
+</head>
+<body data-page="products">
+<a class="skip-a" href="#main-content">Aller au contenu</a>
+<div class="a-shell">
+ <aside class="a-sidebar" aria-label="Navigation latérale">
+  <a href="/" class="a-brand"><span class="a-brand-emblem">A<span class="a-brand-dot">·</span></span><span><strong>ALCAISSE</strong><small>WEB EXPERIENCE / 01</small></span></a>
+  <div class="sidebar-label">ESPACE DE TRAVAIL</div>
+  <nav class="a-nav" aria-label="Pages de démonstration"><a class="a-nav-item" href="/alcaisse-demo.html"><span class="nav-glyph" aria-hidden="true">▦</span><span>Caisse</span><span class="nav-shortcut">01</span></a>
+<a class="a-nav-item is-active" href="/alcaisse/products.html" aria-current="page"><span class="nav-glyph" aria-hidden="true">▤</span><span>Produits</span></a>
+<a class="a-nav-item" href="/alcaisse/stock.html"><span class="nav-glyph" aria-hidden="true">◫</span><span>Stock</span></a>
+<a class="a-nav-item" href="/alcaisse/sales.html"><span class="nav-glyph" aria-hidden="true">≡</span><span>Ventes</span></a>
+<a class="a-nav-item" href="/alcaisse/reports.html"><span class="nav-glyph" aria-hidden="true">▥</span><span>Rapports</span></a>
+<a class="a-nav-item" href="/alcaisse/sessions.html"><span class="nav-glyph" aria-hidden="true">◷</span><span>Sessions</span></a></nav>
+  <div class="sidebar-grow"></div>
+  <div class="side-session"><span class="side-session-cap">ÉTAT DE LA CAISSE</span><div class="side-session-line"><i id="sidebar-status-dot" class="dot dim"></i><strong id="sidebar-status">Aucune session</strong></div><p>Mode simulation · données 100 % fictives</p></div>
+  <a class="side-exit" href="/alcaisse-evidence.html">← Voir l’étude de cas</a>
+ </aside>
+ <div class="a-stage">
+  <header class="a-topbar"><div class="a-top-left"><span class="a-top-overline">LYAN STUDIO</span><span class="a-top-slash">/</span><span class="a-top-current">Produits</span></div><div class="a-top-right"><span class="a-workspace-flag"><i class="dot"></i> DÉMONSTRATION ACTIVE</span><span class="a-persona" title="Persona fictif : aucune authentification">CD</span></div></header>
+  <main id="main-content" tabindex="-1">
+   <div class="a-heading"><div><div class="a-kicker"><span class="a-line"></span> ALCAISSE / INTERACTIVE LAB</div><h1>Catalogue produits</h1><p>Consulter et enregistrer des produits de démonstration.</p></div><div id="head-actions"></div></div>
+   <div class="a-disclaimer"><span class="a-disclaimer-symbol">i</span><span><strong>Environnement de démonstration.</strong> Aucune connexion bancaire, aucun paiement, aucun matériel, aucune base partagée. Les actions et montants sont simulés et enregistrés uniquement dans ce navigateur.</span><a href="/alcaisse-evidence.html">Ce que cela prouve ↗</a></div>
+   <section id="workspace" aria-live="polite"><div class="a-loading"><strong>Chargement du comptoir…</strong><p>JavaScript est nécessaire pour la démonstration interactive.</p></div></section>
+   <footer class="a-footer"><span>ALCAISSE / WEB LAB · VERSION EXPÉRIMENTALE</span><div><button type="button" id="export">Exporter démo</button><button type="button" id="import-trigger">Importer démo</button><input id="import-json" hidden type="file" accept=".json,application/json"><button type="button" id="reset">Réinitialiser</button><a href="/">Lyan Studio ↗</a></div></footer>
+  </main>
+ </div>
+</div>
+<dialog id="form-dialog" aria-labelledby="form-title"><form id="operation-form"><div class="dlg-header"><div><p class="a-kicker">OPÉRATION DÉMO</p><h2 id="form-title">Opération</h2></div><button id="dialog-close" type="button" aria-label="Fermer" class="close-dlg">×</button></div><div id="form-fields"></div><div class="dlg-footer"><button type="button" class="btn btn-outline" id="dialog-cancel">Annuler</button><button type="submit" class="btn btn-solid">Confirmer</button></div></form></dialog>
+<dialog id="receipt-dialog" aria-labelledby="receipt-title"><div class="dlg-header"><div><p class="a-kicker">SIMULATION · AUCUNE IMPRESSION MATÉRIELLE</p><h2 id="receipt-title">Reçu de démonstration</h2></div><button id="receipt-close" type="button" aria-label="Fermer" class="close-dlg">×</button></div><div id="receipt-content"></div><div class="dlg-footer"><button type="button" class="btn btn-solid" id="receipt-done">Fermer</button></div></dialog>
+<div id="toast" aria-live="polite" role="status"></div>
+<script type="module" src="/alcaisse/app.mjs"></script>
+</body></html>

@@ -1,436 +1,51 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Alcaisse Interactive Demo — Lyan Studio</title>
-    <meta
-      name="description"
-      content="Try Alcaisse’s browser demo: product filtering, cart quantities, payment selection and sample stock and reporting views."
-    />
-    <link
-      rel="canonical"
-      href="https://www.lyanstudio.com/alcaisse-demo.html"
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Alcaisse Interactive Demo — Lyan Studio"
-    />
-    <meta
-      property="og:description"
-      content="Try Alcaisse’s browser demo: product filtering, cart quantities, payment selection and sample stock and reporting views."
-    />
-    <meta
-      property="og:url"
-      content="https://www.lyanstudio.com/alcaisse-demo.html"
-    />
-    <meta
-      property="og:image"
-      content="https://www.lyanstudio.com/assets/og-image.png"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Lyan Studio — Operational Software Studio"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Alcaisse Interactive Demo — Lyan Studio"
-    />
-    <meta
-      name="twitter:description"
-      content="Try Alcaisse’s browser demo: product filtering, cart quantities, payment selection and sample stock and reporting views."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.lyanstudio.com/assets/og-image.png"
-    />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0E0E11" />
-    <link
-      rel="preload"
-      href="/assets/fonts/Geist-Variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body class="demo-body">
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <main id="main-content" class="demo-shell">
-      <div class="demo-topbar">
-        <a class="brand" href="/" aria-label="Lyan Studio home">
-          <img
-            src="/assets/logo/lyan-pictogram-dark.svg"
-            alt=""
-            class="brand-logo"
-          />
-          <span>Lyan Studio</span>
-        </a>
-        <span class="demo-disclaimer"
-          >Interactive browser demo · Sample data</span
-        >
-        <a class="btn btn-secondary demo-exit" href="alcaisse.html"
-          >Product page</a
-        >
-      </div>
-
-      <section lang="fr" class="pos-app" aria-label="Alcaisse checkout demo">
-        <aside class="pos-sidebar">
-          <div>
-            <h1>Alcaisse</h1>
-            <p>Retail checkout and stock workflow</p>
-          </div>
-          <nav class="pos-nav" aria-label="Demo views">
-            <button
-              class="is-active"
-              type="button"
-              aria-pressed="true"
-              data-view="checkout"
-            >
-              Caisse
-            </button>
-            <button type="button" aria-pressed="false" data-view="products">
-              Produits
-            </button>
-            <button type="button" aria-pressed="false" data-view="stock">
-              Stock
-            </button>
-            <button type="button" aria-pressed="false" data-view="reports">
-              Rapports
-            </button>
-          </nav>
-          <div class="pos-session">
-            <span>Session ouverte</span>
-            <strong>Caisse 1</strong>
-            <small>Local demo · Static mock data</small>
-          </div>
-        </aside>
-
-        <section class="pos-main">
-          <header class="pos-header">
-            <div>
-              <p class="tag">Alcaisse checkout</p>
-              <h2 data-view-title>Caisse</h2>
-            </div>
-            <div class="pos-status">
-              <span class="status-dot"></span>
-              In-memory browser demo
-            </div>
-          </header>
-
-          <div
-            class="pos-message"
-            role="status"
-            aria-live="polite"
-            data-message
-            hidden
-          >
-            Demo sale completed — no payment processed
-          </div>
-
-          <div class="pos-view is-active" data-panel="checkout">
-            <div class="checkout-grid">
-              <section class="checkout-products">
-                <div class="category-row" aria-label="Product categories"></div>
-                <div class="product-grid" data-products></div>
-              </section>
-
-              <aside class="cart-panel">
-                <div class="cart-head">
-                  <h2>Panier</h2>
-                  <button type="button" data-clear>Clear cart</button>
-                </div>
-                <div class="cart-lines" data-cart-lines></div>
-                <div class="cart-totals">
-                  <div>
-                    <span>Sous-total</span><strong data-subtotal>0,00 €</strong>
-                  </div>
-                  <div>
-                    <span>Remise</span><strong data-discount>-0,00 €</strong>
-                  </div>
-                  <div class="total-row">
-                    <span>Total</span><strong data-total>0,00 €</strong>
-                  </div>
-                </div>
-                <div class="payment-methods" aria-label="Payment methods">
-                  <button
-                    class="is-selected"
-                    type="button"
-                    data-payment="Espèces"
-                  >
-                    Espèces
-                  </button>
-                  <button type="button" data-payment="Carte">Carte</button>
-                  <button type="button" data-payment="Mobile">Mobile</button>
-                </div>
-                <button class="checkout-button" type="button" data-checkout>
-                  Encaisser
-                </button>
-              </aside>
-            </div>
-
-            <div class="ops-cards">
-              <article>
-                <span>Dernière vente</span
-                ><strong data-last-sale>0,00 €</strong>
-                <p>Receipt summary appears after checkout.</p>
-              </article>
-              <article>
-                <span>Alertes stock</span><strong>Demo</strong>
-                <p>Sample items need reorder attention.</p>
-              </article>
-              <article>
-                <span>Session</span><strong>Ouverte</strong>
-                <p>Cash register ready for checkout.</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="pos-view" data-panel="products"></div>
-          <div class="pos-view" data-panel="stock"></div>
-          <div class="pos-view" data-panel="reports"></div>
-        </section>
-      </section>
-    </main>
-
-    <script>
-      const products = [
-        { name: "Coca-Cola 33cl", price: 1.5, category: "Boissons", stock: 18 },
-        { name: "Red Bull 25cl", price: 2.2, category: "Boissons", stock: 8 },
-        {
-          name: "Kinder Bueno",
-          price: 1.8,
-          category: "Confiseries",
-          stock: 21,
-        },
-        { name: "Lay's Nature 45g", price: 1.3, category: "Snacks", stock: 6 },
-        { name: "Evian 50cl", price: 1.2, category: "Boissons", stock: 24 },
-        { name: "Baguette", price: 1.1, category: "Épicerie", stock: 2 },
-        { name: "M&M's 45g", price: 1.4, category: "Confiseries", stock: 12 },
-        {
-          name: "Carte Prépayée 10€",
-          price: 10,
-          category: "Épicerie",
-          stock: 9,
-        },
-        { name: "Essuie-tout", price: 2.5, category: "Hygiène", stock: 3 },
-      ];
-      const categories = [
-        "Tout",
-        "Boissons",
-        "Snacks",
-        "Confiseries",
-        "Épicerie",
-        "Hygiène",
-      ];
-      const cart = new Map();
-      let category = "Tout";
-      let payment = "Espèces";
-      let lastSale = 0;
-
-      const format = (amount) =>
-        amount.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
-      const productGrid = document.querySelector("[data-products]");
-      const categoryRow = document.querySelector(".category-row");
-      const cartLines = document.querySelector("[data-cart-lines]");
-      const subtotalEl = document.querySelector("[data-subtotal]");
-      const discountEl = document.querySelector("[data-discount]");
-      const totalEl = document.querySelector("[data-total]");
-      const lastSaleEl = document.querySelector("[data-last-sale]");
-      const messageEl = document.querySelector("[data-message]");
-
-      function renderCategories() {
-        categoryRow.innerHTML = categories
-          .map(
-            (item) =>
-              `<button type="button" aria-pressed="${item === category}" class="${item === category ? "is-selected" : ""}" data-category="${item}">${item}</button>`,
-          )
-          .join("");
-      }
-
-      function renderProducts() {
-        const visible =
-          category === "Tout"
-            ? products
-            : products.filter((item) => item.category === category);
-        productGrid.innerHTML = visible
-          .map(
-            (item) => `
-        <button class="pos-product" type="button" data-product="${item.name}">
-          <span>${item.category}</span>
-          <strong>${item.name}</strong>
-          <small>${format(item.price)}</small>
-        </button>
-      `,
-          )
-          .join("");
-      }
-
-      function renderCart() {
-        const lines = [...cart.values()];
-        if (!lines.length) {
-          cartLines.innerHTML = `<p class="empty-cart">Cart is empty. Select a product to start.</p>`;
-        } else {
-          cartLines.innerHTML = lines
-            .map(
-              ({ product, qty }) => `
-          <div class="cart-line">
-            <div><strong>${product.name}</strong><span>${format(product.price)} · Qty ${qty}</span></div>
-            <button type="button" data-remove="${product.name}" aria-label="Decrease ${product.name}">−</button>
-          </div>
-        `,
-            )
-            .join("");
-        }
-        const subtotal = lines.reduce(
-          (sum, line) => sum + line.product.price * line.qty,
-          0,
-        );
-        const discount = subtotal >= 15 ? 0.5 : 0;
-        const total = Math.max(0, subtotal - discount);
-        subtotalEl.textContent = format(subtotal);
-        discountEl.textContent = `-${format(discount)}`;
-        totalEl.textContent = format(total);
-        return total;
-      }
-
-      function renderReadOnlyViews() {
-        document.querySelector('[data-panel="products"]').innerHTML = `
-        <div class="demo-table">
-          <h2>Produits</h2>
-          ${products.map((item) => `<div><span>${item.name}</span><span>${format(item.price)}</span><span>${item.category}</span><span>Actif</span></div>`).join("")}
-        </div>
-      `;
-        document.querySelector('[data-panel="stock"]').innerHTML = `
-        <div class="demo-table">
-          <h2>Stock</h2>
-          <div><span>Baguette</span><span>2 left</span><span>Low stock</span><span>Reorder today</span></div>
-          <div><span>Essuie-tout</span><span>3 left</span><span>Low stock</span><span>Supplier follow-up</span></div>
-          <div><span>Lay's Nature 45g</span><span>6 left</span><span>Watch</span><span>Next order</span></div>
-        </div>
-      `;
-        document.querySelector('[data-panel="reports"]').innerHTML = `
-        <div class="report-grid">
-          <article><span>Report mode</span><strong>Static demo</strong></article>
-          <article><span>Data source</span><strong>Mock products</strong></article>
-          <article><span>Inventory view</span><strong>Sample stock</strong></article>
-          <article><span>Last sale</span><strong>${lastSale ? format(lastSale) : "No sale yet"}</strong></article>
-        </div>
-      `;
-      }
-
-      function setView(view) {
-        const titles = {
-          checkout: "Caisse",
-          products: "Produits",
-          stock: "Stock",
-          reports: "Rapports",
-        };
-        document
-          .querySelectorAll("[data-panel]")
-          .forEach((panel) =>
-            panel.classList.toggle("is-active", panel.dataset.panel === view),
-          );
-        document
-          .querySelectorAll("[data-view]")
-          .forEach((button) =>
-            button.classList.toggle("is-active", button.dataset.view === view),
-          );
-        document
-          .querySelectorAll("[data-view]")
-          .forEach((button) =>
-            button.setAttribute(
-              "aria-pressed",
-              String(button.dataset.view === view),
-            ),
-          );
-        document.querySelector("[data-view-title]").textContent = titles[view];
-        renderReadOnlyViews();
-      }
-
-      categoryRow.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-category]");
-        if (!button) return;
-        category = button.dataset.category;
-        renderCategories();
-        renderProducts();
-      });
-
-      productGrid.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-product]");
-        if (!button) return;
-        const product = products.find(
-          (item) => item.name === button.dataset.product,
-        );
-        const existing = cart.get(product.name);
-        cart.set(product.name, {
-          product,
-          qty: existing ? existing.qty + 1 : 1,
-        });
-        messageEl.hidden = true;
-        renderCart();
-      });
-
-      cartLines.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-remove]");
-        if (!button) return;
-        const line = cart.get(button.dataset.remove);
-        if (line.qty <= 1) cart.delete(button.dataset.remove);
-        else
-          cart.set(button.dataset.remove, {
-            product: line.product,
-            qty: line.qty - 1,
-          });
-        renderCart();
-      });
-
-      document.querySelector("[data-clear]").addEventListener("click", () => {
-        cart.clear();
-        messageEl.hidden = true;
-        renderCart();
-      });
-
-      document.querySelectorAll("[data-payment]").forEach((button) => {
-        button.addEventListener("click", () => {
-          payment = button.dataset.payment;
-          document
-            .querySelectorAll("[data-payment]")
-            .forEach((item) =>
-              item.classList.toggle("is-selected", item === button),
-            );
-        });
-      });
-
-      document
-        .querySelector("[data-checkout]")
-        .addEventListener("click", () => {
-          const total = renderCart();
-          if (!total) return;
-          lastSale = total;
-          lastSaleEl.textContent = `${format(total)} · ${payment}`;
-          messageEl.textContent = "Demo sale completed — no payment processed";
-          messageEl.hidden = false;
-          cart.clear();
-          renderCart();
-          renderReadOnlyViews();
-        });
-
-      document.querySelectorAll("[data-view]").forEach((button) => {
-        button.addEventListener("click", () => setView(button.dataset.view));
-      });
-
-      renderCategories();
-      renderProducts();
-      renderCart();
-      renderReadOnlyViews();
-    </script>
-  </body>
-</html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlCaisse Web Lab — Caisse | Lyan Studio</title>
+<meta name="description" content="Essayer AlCaisse Web Lab : Traiter une vente fictive en suivant les règles d’une caisse locale. Application fictive dans le navigateur, sans paiement réel ni synchronisation serveur.">
+<link rel="canonical" href="https://www.lyanstudio.com/alcaisse-demo.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AlCaisse Web Lab — Caisse">
+<meta property="og:description" content="Démonstration interactive de caisse en DZD, ventes, stock, rapports et sessions. Données fictives locales.">
+<meta property="og:url" content="https://www.lyanstudio.com/alcaisse-demo.html">
+<meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AlCaisse Web Lab — Caisse">
+<meta name="twitter:description" content="Simulation interactive de caisse, transactions et gestion de stock en DZD.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#182e2b">
+<link rel="stylesheet" href="/alcaisse/styles.css">
+</head>
+<body data-page="checkout">
+<a class="skip-a" href="#main-content">Aller au contenu</a>
+<div class="a-shell">
+ <aside class="a-sidebar" aria-label="Navigation latérale">
+  <a href="/" class="a-brand"><span class="a-brand-emblem">A<span class="a-brand-dot">·</span></span><span><strong>ALCAISSE</strong><small>WEB EXPERIENCE / 01</small></span></a>
+  <div class="sidebar-label">ESPACE DE TRAVAIL</div>
+  <nav class="a-nav" aria-label="Pages de démonstration"><a class="a-nav-item is-active" href="/alcaisse-demo.html" aria-current="page"><span class="nav-glyph" aria-hidden="true">▦</span><span>Caisse</span><span class="nav-shortcut">01</span></a>
+<a class="a-nav-item" href="/alcaisse/products.html"><span class="nav-glyph" aria-hidden="true">▤</span><span>Produits</span></a>
+<a class="a-nav-item" href="/alcaisse/stock.html"><span class="nav-glyph" aria-hidden="true">◫</span><span>Stock</span></a>
+<a class="a-nav-item" href="/alcaisse/sales.html"><span class="nav-glyph" aria-hidden="true">≡</span><span>Ventes</span></a>
+<a class="a-nav-item" href="/alcaisse/reports.html"><span class="nav-glyph" aria-hidden="true">▥</span><span>Rapports</span></a>
+<a class="a-nav-item" href="/alcaisse/sessions.html"><span class="nav-glyph" aria-hidden="true">◷</span><span>Sessions</span></a></nav>
+  <div class="sidebar-grow"></div>
+  <div class="side-session"><span class="side-session-cap">ÉTAT DE LA CAISSE</span><div class="side-session-line"><i id="sidebar-status-dot" class="dot dim"></i><strong id="sidebar-status">Aucune session</strong></div><p>Mode simulation · données 100 % fictives</p></div>
+  <a class="side-exit" href="/alcaisse-evidence.html">← Voir l’étude de cas</a>
+ </aside>
+ <div class="a-stage">
+  <header class="a-topbar"><div class="a-top-left"><span class="a-top-overline">LYAN STUDIO</span><span class="a-top-slash">/</span><span class="a-top-current">Caisse</span></div><div class="a-top-right"><span class="a-workspace-flag"><i class="dot"></i> DÉMONSTRATION ACTIVE</span><span class="a-persona" title="Persona fictif : aucune authentification">CD</span></div></header>
+  <main id="main-content" tabindex="-1">
+   <div class="a-heading"><div><div class="a-kicker"><span class="a-line"></span> ALCAISSE / INTERACTIVE LAB</div><h1>Encaissement</h1><p>Traiter une vente fictive en suivant les règles d’une caisse locale.</p></div><div id="head-actions"></div></div>
+   <div class="a-disclaimer"><span class="a-disclaimer-symbol">i</span><span><strong>Environnement de démonstration.</strong> Aucune connexion bancaire, aucun paiement, aucun matériel, aucune base partagée. Les actions et montants sont simulés et enregistrés uniquement dans ce navigateur.</span><a href="/alcaisse-evidence.html">Ce que cela prouve ↗</a></div>
+   <section id="workspace" aria-live="polite"><div class="a-loading"><strong>Chargement du comptoir…</strong><p>JavaScript est nécessaire pour la démonstration interactive.</p></div></section>
+   <footer class="a-footer"><span>ALCAISSE / WEB LAB · VERSION EXPÉRIMENTALE</span><div><button type="button" id="export">Exporter démo</button><button type="button" id="import-trigger">Importer démo</button><input id="import-json" hidden type="file" accept=".json,application/json"><button type="button" id="reset">Réinitialiser</button><a href="/">Lyan Studio ↗</a></div></footer>
+  </main>
+ </div>
+</div>
+<dialog id="form-dialog" aria-labelledby="form-title"><form id="operation-form"><div class="dlg-header"><div><p class="a-kicker">OPÉRATION DÉMO</p><h2 id="form-title">Opération</h2></div><button id="dialog-close" type="button" aria-label="Fermer" class="close-dlg">×</button></div><div id="form-fields"></div><div class="dlg-footer"><button type="button" class="btn btn-outline" id="dialog-cancel">Annuler</button><button type="submit" class="btn btn-solid">Confirmer</button></div></form></dialog>
+<dialog id="receipt-dialog" aria-labelledby="receipt-title"><div class="dlg-header"><div><p class="a-kicker">SIMULATION · AUCUNE IMPRESSION MATÉRIELLE</p><h2 id="receipt-title">Reçu de démonstration</h2></div><button id="receipt-close" type="button" aria-label="Fermer" class="close-dlg">×</button></div><div id="receipt-content"></div><div class="dlg-footer"><button type="button" class="btn btn-solid" id="receipt-done">Fermer</button></div></dialog>
+<div id="toast" aria-live="polite" role="status"></div>
+<script type="module" src="/alcaisse/app.mjs"></script>
+</body></html>
