@@ -19,6 +19,17 @@ StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are inte
 
 These describe private source carefully; only public read-only/product screens are linked. No claimed hardware-validation footage, live authorization coverage or test results are fabricated.
 
+## AlCaisse browser-only demonstration
+
+[Launch AlCaisse Web Lab](https://www.lyanstudio.com/alcaisse-demo.html) — **six functional routes** (checkout, products, inventory, sales, reports, cash sessions) with realistic sample records, a pure business logic layer and browser-local state. **Currency: DZD; cash settlement only**, matching the desktop app's principal cashier flow.
+
+The web lab is a **separately implemented simulator** that uses fictional products and browser `localStorage` only. It does **not** connect to AlCaisse's private Electron/SQLite database, local hardware, actual payment provider, Auth/PIN system or secure audit service. The tester can sell a sample item, record and cancel an entry, change simulated stock, open and close simulated sessions and export local test data. It must never be used for real retail transactions.
+
+- Domain logic: [`alcaisse/core.mjs`](alcaisse/core.mjs)
+- Automated tests: `node --test alcaisse/core.test.mjs`
+- Client interactions: [`alcaisse/app.mjs`](alcaisse/app.mjs)
+- Creator-reported hardware fact: the actual AlCaisse desktop application has been installed and tested locally on a Windows machine. An independently captured installation/field-acceptance report (Windows build SHA, test results, peripherals and OS details) is not supplied; label this a creator report, not a third-party certification.
+
 ## Evidence-first product review
 
 See [portfolio product audit (October 2026)](docs/product-portfolio-audit-2026-10.md) for repository-by-repository positioning, limitations, audit scope and priority evidence work. The GitHub profile README and Kepler README were updated to make unverified claims explicit.

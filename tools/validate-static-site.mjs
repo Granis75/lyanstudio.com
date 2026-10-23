@@ -185,6 +185,17 @@ assert(
     ),
   "Vercel excludes the build validator",
 );
+// AlCaisse Web Lab: six addressable routes, schema validation, pure business rules.
+for(const p of ["alcaisse/core.mjs","alcaisse/app.mjs","alcaisse/core.test.mjs","alcaisse/styles.css","alcaisse/products.html","alcaisse/stock.html","alcaisse/sales.html","alcaisse/reports.html","alcaisse/sessions.html"]) assert(existsSync(p),"Missing AlCaisse web resource: "+p);
+for(const p of ["alcaisse/products.html","alcaisse/stock.html","alcaisse/sales.html","alcaisse/reports.html","alcaisse/sessions.html"]) assert(sitemap.includes("https://www.lyanstudio.com/"+p+"</loc>"),"Missing AlCaisse route from sitemap: "+p);
+for(const p of ["alcaisse-demo.html","alcaisse/products.html","alcaisse/stock.html","alcaisse/sales.html","alcaisse/reports.html","alcaisse/sessions.html"]) {
+ const source=readFileSync(p,"utf8");
+ assert(source.includes('href="/alcaisse/styles.css"'),"Missing AlCaisse stylesheet: "+p);
+ assert(source.includes('src="/alcaisse/app.mjs"'),"Missing AlCaisse app module: "+p);
+}
+execFileSync(process.execPath, ["--check","alcaisse/core.mjs"], {stdio:"inherit"});
+execFileSync(process.execPath, ["--check","alcaisse/app.mjs"], {stdio:"inherit"});
+execFileSync(process.execPath, ["--test","alcaisse/core.test.mjs"], {stdio:"inherit"});
 execFileSync(process.execPath, ["--check","itopsdesk/app.mjs"], {stdio:"inherit"});
 execFileSync(process.execPath, ["--check","itopsdesk/core.mjs"], {stdio:"inherit"});
 execFileSync(process.execPath, ["--test","itopsdesk/core.test.mjs","itopsdesk/routes.test.mjs"], {stdio:"inherit"});
