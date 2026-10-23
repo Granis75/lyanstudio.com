@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Asset inventory — IT Ops Desk | Lyan Studio</title>
+<meta name="description" content="Explore an interactive browser-local IT service desk: asset inventory, incident tickets, status tracking and activity history. A demonstrator by Lyan Studio.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.lyanstudio.com/itopsdesk/assets.html">
+<meta property="og:type" content="website"><meta property="og:title" content="IT Ops Desk — Interactive Demonstrator"><meta property="og:description" content="Explore incident management, inventory and activity history in a browser-local IT operations demonstrator."><meta property="og:url" content="https://www.lyanstudio.com/itopsdesk/assets.html"><meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="IT Ops Desk — Interactive Demonstrator"><meta name="twitter:description" content="Try a working IT operations prototype.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/itopsdesk/styles.css">
+</head><body data-page="assets">
+<a class="skip" href="#main-content">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+ <a class="logo" href="/"><span class="logo-mark">LY</span><span><strong>LYAN STUDIO</strong><small>PRODUCT LAB</small></span></a>
+ <div class="sidebar-section">WORKSPACE</div>
+ <nav aria-label="Workspace navigation">
+  <a class="nav-item" data-nav="overview" href="/itopsdesk/"><span class="nav-icon">▦</span> Overview</a>
+  <a class="nav-item" data-nav="tickets" href="/itopsdesk/incidents.html"><span class="nav-icon">◫</span> Incidents <span id="nav-count" class="nav-count"></span></a>
+  <a class="nav-item active" data-nav="assets" aria-current="page" href="/itopsdesk/assets.html"><span class="nav-icon">▤</span> Assets</a>
+  <a class="nav-item" data-nav="activity" href="/itopsdesk/activity.html"><span class="nav-icon">◷</span> Activity log</a>
+ </nav>
+ <div class="sidebar-spacer"></div>
+ <div class="demo-card"><span class="live-dot"></span> INTERACTIVE DEMO <p>Real interactions, sample data. Changes save locally in this browser only.</p></div>
+ <a class="back-link" href="/work.html#itopsdesk">← Back to case study</a>
+</aside>
+<div class="main-shell">
+<header class="topbar">
+ <div class="breadcrumbs"><span>LYAN STUDIO / IT OPERATIONS</span><span class="sep">/</span><strong id="breadcrumb">Overview</strong></div>
+ <div class="top-actions"><span class="top-demo">● DEMO WORKSPACE</span><label class="actor-label" for="actor">Demo operator</label><select id="actor" aria-label="Demo operator"><option>Alex</option><option>Sam</option><option>Demo</option></select><span class="avatar" aria-label="Demo workspace">IT</span></div>
+</header>
+<main id="main-content" tabindex="-1">
+ <section class="page-head"><div><p class="eyebrow">SERVICE DESK / WORKSPACE 01</p><h1 id="page-title">Asset inventory</h1><p id="page-intro" class="lead">Track hardware ownership, location and lifecycle.</p></div><div class="head-actions"><button type="button" class="btn btn-soft" id="export-json">↓ Backup JSON</button><button type="button" class="btn btn-primary" id="new-item">+ New asset</button></div></section>
+ <div class="notice"><span class="notice-icon">ⓘ</span><span><strong>Portfolio demonstrator, not a production service desk.</strong> All records are fictional. Changes persist only in this browser. Operator selection is simulated, not authentication.</span></div>
+ <section id="workspace" aria-live="polite"><div class="loading-panel"><div class="loading-symbol">⌘</div><h2>Preparing your workspace</h2><p>Loading the demo incident and asset records…</p><noscript><p>JavaScript is required to use the interactive workspace.</p></noscript></div></section>
+ <footer class="app-footer"><span>IT OPS DESK · PORTFOLIO DEMONSTRATOR / 2026</span><div><button class="footer-btn" id="import-trigger" type="button">Import backup</button><input type="file" id="import-json" accept="application/json,.json" hidden><button class="footer-btn" id="export-csv" type="button">Export CSV</button><button class="footer-btn" id="reset" type="button">Reset demo</button></div></footer>
+</main>
+</div></div>
+<dialog id="editor" aria-labelledby="dialog-title"><form id="record-form" method="dialog"><div class="dialog-head"><div><p class="eyebrow">WORKSPACE RECORD</p><h2 id="dialog-title">New incident</h2></div><button type="button" class="icon-button" id="close-dialog" aria-label="Close">×</button></div><div id="form-fields"></div><div class="dialog-actions"><button type="button" class="btn btn-soft" id="cancel-dialog">Cancel</button><button type="submit" class="btn btn-primary">Save record</button></div></form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/itopsdesk/app.mjs"></script>
+</body></html>

@@ -3,7 +3,15 @@
 An interactive IT service desk prototype built within Lyan Studio. This is a **fictional dataset and single-browser demonstrator**, not an authenticated multi-user SaaS or production ITSM product.
 
 ## Try it
-Open \`https://www.lyanstudio.com/itopsdesk/\`. No sign-in or backend required.
+Open `https://www.lyanstudio.com/itopsdesk/`. No sign-in or backend required.
+
+Four independently addressable routes share one browser-local state:
+- `/itopsdesk/` — Overview
+- `/itopsdesk/incidents.html` — Incidents
+- `/itopsdesk/assets.html` — Assets
+- `/itopsdesk/activity.html` — Activity history
+
+**Routing fix (October 2026):** CSS and ES module URLs are root-absolute (`/itopsdesk/...`) so a Vercel redirect from `/itopsdesk/` to `/itopsdesk` cannot break the page by changing its base URL. The previous page rendered unstyled because the relative assets resolved against the wrong directory.
 
 ## Implemented
 - Incident creation, editing, deletion, status and priority management
@@ -26,3 +34,6 @@ Open \`https://www.lyanstudio.com/itopsdesk/\`. No sign-in or backend required.
 - Do not enter sensitive credentials, real user personal data or customer incidents.
 - This demonstration cannot be used as a secure production ticketing system.
 - A production build would require hosted persistence, authenticated identities, RBAC validated server-side, tenancy isolation, audit retention and automated end-to-end tests.
+
+## Route checks
+Run `node --test itopsdesk/routes.test.mjs` to check all page entry points, canonical URLs, stylesheet and module references. The site build runs the route tests too.

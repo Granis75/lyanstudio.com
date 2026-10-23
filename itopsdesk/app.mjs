@@ -4,7 +4,7 @@ const $=sel=>document.querySelector(sel);
 const h=escapeHtml;
 let state;
 try{state=restore(JSON.parse(localStorage.getItem(KEY)||"null"))}catch{state=seed()}
-let view="overview",search="",statusFilter="all",editorKind="tickets",editingId="";
+let view=["overview","tickets","assets","activity"].includes(document.body.dataset.page)?document.body.dataset.page:"overview",search="",statusFilter="all",editorKind="tickets",editingId="";
 const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch{notify("Browser storage unavailable. Changes may not persist.")}};
 const notify=msg=>{const t=$("#toast");t.textContent=msg;t.classList.add("visible");clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.remove("visible"),3500)};
 const dot=(value,kind="status")=>'<span class="pill '+kind+'-'+h(String(value).toLowerCase().replace(/\s+/g,"-"))+'">'+h(value)+'</span>';
@@ -23,11 +23,11 @@ function activity(rows){return rows.length?'<div class="panel-list">'+rows.map(x
 const panel=(title,content,action="",foot="")=>'<div class="panel"><div class="panel-head"><h2>'+title+'</h2>'+action+'</div>'+content+(foot?'<div class="panel-foot">'+foot+'</div>':'')+'</div>';
 function overview(){
  const s=stats(state);
- const cards=[["Open incidents",s.open,"Unresolved service requests","◫"],["Critical priority",s.critical,"Requires immediate attention","!"],["Active devices",s.active,"Registered and in use","▤"],["Total equipment",s.assets,"Tracked in inventory","▦"]];
+ const cards=[["Open incidents",s.open,"Tickets requiring action","◫"],["Critical priority",s.critical,"High-impact incidents","!"],["Active devices",s.active,"Equipment in service","▤"],["Total equipment",s.assets,"Registered assets","▦"]];
  const summary='<div class="stats">'+cards.map(c=>'<div class="stat-card"><div class="stat-top"><span>'+c[0]+'</span><span class="stat-symbol">'+c[3]+'</span></div><div class="stat-value">'+c[1]+'</div><div class="stat-bottom">'+c[2]+'</div></div>').join("")+'</div>';
  const counts=STATES.map(v=>[v,state.tickets.filter(t=>t.status===v).length]);
  const bars='<div class="distribution">'+counts.map(([label,count])=>'<div class="dist-row"><strong>'+label+'</strong><span>'+count+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+Math.round(count/Math.max(state.tickets.length,1)*100)+'%"></div></div>').join("")+'</div>';
- return summary+'<div class="cols">'+panel("Recent incidents",tableTickets(state.tickets.slice(0,5),true),'<button type="button" data-route="tickets">View all →</button>','Select a ticket ID to inspect or edit its details.')+'<div class="side-panels">'+panel("Ticket distribution",bars)+'<div style="height:18px"></div>'+panel("Latest activity",activity(state.activity.slice(0,4)),'<button type="button" data-route="activity">View log →</button>')+'</div></div>';
+ return '<section class="command-banner"><div class="command-banner__copy"><span class="command-chip">● LIVE DEMO · LOCAL DATA</span><h2>Every incident.<br>One clear view.</h2><p>From the first support request to the final resolution, keep your equipment and technical workflow in one place.</p><div class="command-links"><a href="/itopsdesk/incidents.html">Manage incidents ↗</a><a href="/itopsdesk/assets.html">Browse assets ↗</a></div></div><div class="command-art" aria-hidden="true"><div class="art-orbit art-orbit--one"></div><div class="art-orbit art-orbit--two"></div><div class="art-centre"><span>IT / OPS</span><strong>01</strong><small>OPERATIONS MONITOR</small></div><div class="art-dot"></div></div></section>'+summary+'<div class="cols">'+panel("Recent incidents",tableTickets(state.tickets.slice(0,5),true),'<button type="button" data-route="tickets">View all →</button>','Select a ticket ID to inspect or edit its details.')+'<div class="side-panels">'+panel("Ticket distribution",bars)+'<div style="height:18px"></div>'+panel("Latest activity",activity(state.activity.slice(0,4)),'<button type="button" data-route="activity">View log →</button>')+'</div></div>';
 }
 function filtered(){
  const term=search.toLowerCase();
@@ -37,18 +37,22 @@ function filtered(){
 function collection(){
  const isTicket=view==="tickets";
  const statuses=isTicket?STATES:ASSET_STATES;
- return '<div class="toolbar"><input class="searchbox" aria-label="Search records" id="search" type="search" placeholder="Search by title, ID, owner or device..." value="'+h(search)+'"><select id="status-filter" class="filter" aria-label="Filter by status"><option value="all">All statuses</option>'+statuses.map(s=>'<option value="'+h(s)+'"'+(statusFilter===s?' selected':'')+'>'+h(s)+'</option>').join("")+'</select></div>'+panel(isTicket?"Incident queue":"Equipment register",isTicket?tableTickets(filtered()):tableAssets(filtered()),'<small>'+filtered().length+' records</small>','Demo records. Editing is stored locally, not synchronized with a service.');
+ const total=state[view].length;
+ const active=isTicket?state.tickets.filter(x=>x.status!=="Resolved").length:state.assets.filter(x=>x.status==="Active").length;
+ const summary='<div class="collection-summary"><div><span class="collection-summary__label">REGISTERED RECORDS</span><strong>'+total+'</strong><small>'+(isTicket?"Total service requests":"Tracked equipment")+'</small></div><div><span class="collection-summary__label">'+(isTicket?"UNRESOLVED":"ACTIVE ASSETS")+'</span><strong>'+active+'</strong><small>'+(isTicket?"Awaiting resolution":"Currently in service")+'</small></div><div class="collection-summary__note"><span class="live-dot"></span> All sample records are editable.<br>Changes stay on this device.</div></div>';
+ return summary+'<div class="toolbar"><input class="searchbox" aria-label="Search records" id="search" type="search" placeholder="Search by title, ID, owner or device..." value="'+h(search)+'"><select id="status-filter" class="filter" aria-label="Filter by status"><option value="all">All statuses</option>'+statuses.map(s=>'<option value="'+h(s)+'"'+(statusFilter===s?' selected':'')+'>'+h(s)+'</option>').join("")+'</select></div>'+panel(isTicket?"Incident queue":"Equipment register",isTicket?tableTickets(filtered()):tableAssets(filtered()),'<small>'+filtered().length+' records</small>','Demo records. Editing is stored locally, not synchronized with a service.');
 }
 function render(){
  const labels={overview:"Overview",tickets:"Incidents",assets:"Assets",activity:"Activity log"};
  $("#breadcrumb").textContent=labels[view];$("#page-title").textContent=headers[view][0];$("#page-intro").textContent=headers[view][1];
- document.querySelectorAll("[data-view]").forEach(b=>{b.classList.toggle("active",b.dataset.view===view);if(b.dataset.view===view)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+ document.querySelectorAll("[data-nav]").forEach(b=>{b.classList.toggle("active",b.dataset.nav===view);if(b.dataset.nav===view)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
  $("#nav-count").textContent=stats(state).open;
  $("#new-item").textContent=view==="assets"?"+ New asset":"+ New incident";
- $("#new-item").style.display=view==="activity"?"none":"";
+ $("#new-item").hidden=view==="activity";
  $("#workspace").innerHTML=view==="overview"?overview():view==="activity"?panel("Change history",activity(state.activity)):collection();
 }
-function setView(next){if(!headers[next])return;view=next;search="";statusFilter="all";render()}
+const routes={overview:"/itopsdesk/",tickets:"/itopsdesk/incidents.html",assets:"/itopsdesk/assets.html",activity:"/itopsdesk/activity.html"};
+function setView(next){if(!headers[next]||next===view)return;window.location.assign(routes[next])}
 const field=(name,label,value="",type="text",full=false,options=null)=>'<div class="field'+(full?' full':'')+'"><label for="f-'+name+'">'+label+'</label>'+(options?'<select id="f-'+name+'" name="'+name+'">'+options.map(o=>'<option value="'+h(o.value??o)+'"'+(String(o.value??o)===String(value)?' selected':'')+'>'+h(o.label??o)+'</option>').join("")+'</select>':type==="textarea"?'<textarea id="f-'+name+'" name="'+name+'" maxlength="1000">'+h(value)+'</textarea>':'<input id="f-'+name+'" name="'+name+'" type="'+type+'" value="'+h(value)+'" maxlength="180">')+'</div>';
 function editor(kind,id=""){
  editorKind=kind;editingId=id;
@@ -69,9 +73,9 @@ $("#record-form").addEventListener("submit",e=>{
 });
 $("#cancel-dialog").addEventListener("click",()=>$("#editor").close());$("#close-dialog").addEventListener("click",()=>$("#editor").close());
 document.addEventListener("click",e=>{
- const v=e.target.closest("[data-view],[data-route],[data-edit],[data-delete]");
+ const v=e.target.closest("[data-route],[data-edit],[data-delete]");
  if(!v)return;
- if(v.dataset.view||v.dataset.route){setView(v.dataset.view||v.dataset.route);return}
+ if(v.dataset.route){setView(v.dataset.route);return}
  if(v.dataset.edit){editor(v.dataset.edit,v.dataset.id);return}
  if(v.dataset.delete){
   if(!confirm("Delete "+v.dataset.id+" from this local demo?"))return;
