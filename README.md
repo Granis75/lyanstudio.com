@@ -2,7 +2,7 @@
 
 Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analytics script or production dependency is required.
 
-## Current portfolio (22 October 2026)
+## Current portfolio (23 October 2026)
 
 - **StayOps** — active hotel team operations software in development.
 - **MyBi** — operational business management tool in use by its creator.
@@ -11,6 +11,10 @@ Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analyt
 - **IT Ops Desk** — interactive local-browser ITSM demonstrator (fictional records; no authentication or shared database).
 
 StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are intentionally not promoted on this website. Their source histories remain in their separate repositories. Product descriptions do not imply customer adoption or production certification.
+
+## Evidence-first product review
+
+See [portfolio product audit (October 2026)](docs/product-portfolio-audit-2026-10.md) for repository-by-repository positioning, limitations, audit scope and priority evidence work. The GitHub profile README and Kepler README were updated to make unverified claims explicit.
 
 ## IT Ops Desk
 
