@@ -185,6 +185,8 @@ assert(
     ),
   "Vercel excludes the build validator",
 );
+execFileSync(process.execPath, ["--check","itopsdesk/app.mjs"], {stdio:"inherit"});
+execFileSync(process.execPath, ["--check","itopsdesk/core.mjs"], {stdio:"inherit"});
 execFileSync(process.execPath, ["--test","itopsdesk/core.test.mjs"], {stdio:"inherit"});
 console.log(
   `Operational studio validation passed: ${pages.length} pages and ${references} local references checked.`,
