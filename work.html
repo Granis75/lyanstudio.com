@@ -6,7 +6,7 @@
     <title>Selected Operational Systems — Lyan Studio</title>
     <meta
       name="description"
-      content="Explore StayOps, MyBi and Kepler Express: operational software for hospitality, independent business and logistics, plus the AlCaisse POS prototype."
+      content="Explore StayOps, MyBi, AlCaisse, Kepler Express and IT Ops Desk: documented applications and honest prototypes."
     />
     <link rel="canonical" href="https://www.lyanstudio.com/work.html" />
     <meta property="og:type" content="website" />
@@ -90,9 +90,9 @@
           <p class="eyebrow">Selected work</p>
           <h1>Selected operational systems</h1>
           <p>
-            Selected systems for hotel team coordination, independent business
-            management and logistics, plus an offline retail POS prototype.
-            Each project's status is stated individually.
+            Selected systems for hospitality, independent business and offline
+            retail, plus logistics and IT operations experiments.
+            Each project's status and limitations are stated individually.
           </p>
         </div>
       </section>
@@ -215,62 +215,19 @@
                 >Explore MyBi</a
               >
             </article>
-            <article class="editorial-case" id="kepler">
-              <div class="editorial-case__header">
-                <p class="case-index">03</p>
-                <div>
-                  <p class="case-label">Logistics / Service Operations</p>
-                  <h3 class="system-title">Kepler Express</h3>
-                  <p class="project-status">Reference implementation · Case study</p>
-                  <p class="case-copy">
-                    Mission tracking, client follow-up, expenses, invoices and
-                    payment visibility.
-                  </p>
-                </div>
-              </div>
+            <article class="editorial-case" id="alcaisse">
+              <div class="editorial-case__header"><p class="case-index">03</p><div>
+                <p class="case-label">Retail / Offline Desktop Software</p><h3 class="system-title">AlCaisse</h3>
+                <p class="project-status">Functional prototype · Hardware testing pending</p>
+                <p class="case-copy">An offline-first Windows point-of-sale application designed to continue selling without a network connection.</p>
+              </div></div>
               <div class="case-context">
-                <div>
-                  <h4>The workflow problem</h4>
-                  <p>
-                    Missions, client records and invoice follow-up can become
-                    disconnected as service work moves between stages.
-                  </p>
-                </div>
-                <div>
-                  <h4>System approach</h4>
-                  <p>
-                    Track missions alongside client context, expenses and
-                    invoice status in a shared back-office interface.
-                  </p>
-                </div>
+                <div><h4>The workflow problem</h4><p>Small retailers need checkout and inventory workflows that do not stop when connectivity drops.</p></div>
+                <div><h4>System approach</h4><p>Keep the sale, stock decrement, shift tracking and backups local to the device. Physical peripherals remain to be validated.</p></div>
               </div>
-              <dl class="system-specs">
-                <div>
-                  <dt>Key modules</dt>
-                  <dd>Missions · Clients · Expenses · Invoices · Payments</dd>
-                </div>
-                <div>
-                  <dt>Implementation</dt>
-                  <dd>React · TypeScript · Supabase · PostgreSQL · Vercel</dd>
-                </div>
-              </dl>
-              <div class="browser-frame">
-                <img
-                  src="assets/work/kepler.webp"
-                  width="1586"
-                  height="992"
-                  alt="Kepler Express dashboard showing mission tracking and invoice follow-up"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <a
-                class="preview-link"
-                href="https://kepler.lyanstudio.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Explore Kepler Express</a
-              >
+              <dl class="system-specs"><div><dt>Key modules</dt><dd>Checkout · Stock · Cash sessions · Receipts · Local backup</dd></div><div><dt>Implementation</dt><dd>Electron · React · TypeScript · SQLite</dd></div></dl>
+              <div class="browser-frame"><img src="assets/work/alcaisse.webp" alt="AlCaisse retail checkout application interface" loading="lazy" decoding="async" /></div>
+              <a class="preview-link" href="alcaisse.html">Explore AlCaisse and its limitations</a>
             </article>
           </div>
         </div>
@@ -279,23 +236,27 @@
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">Additional product work</p>
-            <h2>Offline checkout, built for the counter.</h2>
+            <h2>Additional operating systems and experiments.</h2>
             <p>
-              A focused Windows point-of-sale project with local data and no
-              internet dependency for daily sales. Field validation is still required.
+              A secondary logistics case study and a new working IT operations demonstrator.
             </p>
           </div>
-          <div class="project-grid labs-grid labs-grid--single">
-            <article class="project-card">
-              <h3>AlCaisse</h3>
-              <p class="project-status">Prototype · Hardware testing pending</p>
-              <p>
-                Offline-first Windows POS for barcode checkout, cash sessions,
-                stock management and local backups.
-              </p>
-              <p class="lab-stack">Electron · React · TypeScript · SQLite</p>
-              <a class="text-link" href="alcaisse.html">Explore AlCaisse</a>
-            </article>
+          <div class="project-grid labs-grid">
+            <article class="project-card" id="kepler">
+                <p class="case-label">Logistics / Service Operations</p><h3>Kepler Express</h3>
+                <p class="project-status">Reference implementation · Case study</p>
+                <p>Connect missions, expenses, billing and payments in an operations-oriented interface.</p>
+                <p class="lab-stack">React · TypeScript · Supabase</p>
+                <a class="text-link" href="https://kepler.lyanstudio.com/" target="_blank" rel="noopener noreferrer">Explore Kepler demo</a>
+              </article>
+              <article class="project-card" id="itopsdesk">
+                <p class="case-label">IT Service Operations</p><h3>IT Ops Desk</h3>
+                <p class="project-status">Interactive browser-local prototype · October 2026</p>
+                <p>Explore the life of an incident linked to a device: assignment, priority, resolution and activity history. CRUD, search, CSV/JSON export and tests are implemented.</p>
+                <p>Uses fictional data. No server, secure logins, production RBAC or verified customers.</p>
+                <p class="lab-stack">HTML · CSS · JavaScript modules · LocalStorage</p>
+                <a class="text-link" href="itopsdesk/">Launch interactive demo →</a>
+              </article>
           </div>
         </div>
       </section>

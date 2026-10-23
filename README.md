@@ -6,10 +6,15 @@ Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analyt
 
 - **StayOps** — active hotel team operations software in development.
 - **MyBi** — operational business management tool in use by its creator.
-- **Kepler Express** — retained logistics operations reference implementation.
 - **AlCaisse** — offline POS prototype, pending testing on physical hardware.
+- **Kepler Express** — retained secondary logistics operations reference implementation.
+- **IT Ops Desk** — interactive local-browser ITSM demonstrator (fictional records; no authentication or shared database).
 
 StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are intentionally not promoted on this website. Their source histories remain in their separate repositories. Product descriptions do not imply customer adoption or production certification.
+
+## IT Ops Desk
+
+Open `/itopsdesk/` on the site. Run `node --test itopsdesk/core.test.mjs` to test ticket/asset state transitions. See [IT Ops Desk technical notes](itopsdesk/README.md) and [case study](itopsdesk/CASE_STUDY.md). This is an honest portfolio demo, not a production ITSM deployment.
 
 ## Local development
 

@@ -1,8 +1,10 @@
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 
 const pages = readdirSync(".").filter((file) => file.endsWith(".html"));
+for(const p of ["itopsdesk/index.html","itopsdesk/styles.css","itopsdesk/app.mjs","itopsdesk/core.mjs","itopsdesk/core.test.mjs"]) assert(existsSync(p),"Missing IT Ops Desk file: "+p);
 const requiredPages = [
   "index.html",
   "work.html",
@@ -129,6 +131,7 @@ for (const term of [
   assert(home.includes(term), `Missing software positioning: ${term}`);
 }
 const sitemap = readFileSync("sitemap.xml", "utf8");
+assert(sitemap.includes('https://www.lyanstudio.com/itopsdesk/</loc>'), 'Missing IT Ops Desk sitemap');
 for (const page of pages)
   assert(
     sitemap.includes(
@@ -182,6 +185,7 @@ assert(
     ),
   "Vercel excludes the build validator",
 );
+execFileSync(process.execPath, ["--test","itopsdesk/core.test.mjs"], {stdio:"inherit"});
 console.log(
   `Operational studio validation passed: ${pages.length} pages and ${references} local references checked.`,
 );
