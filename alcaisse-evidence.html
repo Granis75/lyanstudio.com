@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AlCaisse — Technical Case Study | Lyan Studio</title>
+<meta name="description" content="An offline-first Windows desktop point-of-sale case study with transactional SQLite sales, stock consistency, receipts, backups and explicit hardware validation limits." />
+<link rel="canonical" href="https://www.lyanstudio.com/alcaisse-evidence.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="AlCaisse — Technical Case Study" />
+<meta property="og:description" content="An offline-first Windows desktop point-of-sale case study with transactional SQLite sales, stock consistency, receipts, backups and explicit hardware validation limits." />
+<meta property="og:url" content="https://www.lyanstudio.com/alcaisse-evidence.html" />
+<meta property="og:image" content="https://www.lyanstudio.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AlCaisse — Technical Case Study" />
+<meta name="twitter:description" content="An offline-first Windows desktop point-of-sale case study with transactional SQLite sales, stock consistency, receipts, backups and explicit hardware validation limits." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/evidence.css" />
+</head>
+<body class="evidence-body">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+<a class="brand" href="/" aria-label="Lyan Studio home"><img src="/assets/logo/lyan-pictogram-dark.svg" alt="" class="brand-logo"/><span>Lyan Studio</span></a>
+<button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">Menu</button>
+<nav class="main-nav" id="main-nav" data-nav aria-label="Main navigation"><a href="work.html" aria-current="page">Work</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Discuss a tool</a></nav>
+</header>
+<main id="main-content">
+<section class="ev-hero"><div class="container">
+<a class="ev-back" href="work.html">← All selected projects</a>
+<div class="ev-hero-layout"><div class="ev-hero-copy">
+<p class="ev-eyebrow"><span class="ev-dot"></span> PRODUCT / ENGINEERING EVIDENCE</p>
+<h1>AlCaisse</h1><p class="ev-tagline">Retail checkout designed to work even when the internet does not.</p><p class="ev-lede">An offline-first Windows desktop point-of-sale case study with transactional SQLite sales, stock consistency, receipts, backups and explicit hardware validation limits.</p>
+<div class="ev-actions"><a class="ev-button ev-button--primary" href="alcaisse-demo.html">Explore browser presentation →</a><a class="ev-button ev-button--ghost" href="alcaisse.html">Read product details →</a></div>
+</div><aside class="ev-meta"><p class="ev-overline">CURRENT PROJECT STATUS</p><strong>Desktop engineering prototype · Hardware validation pending</strong><div class="ev-meta-rule"></div><p>These pages distinguish code that exists, public demonstrations and capabilities that still require real-world validation.</p><span class="ev-version">VERIFICATION NOTES · OCT 2026</span></aside></div>
+<div class="ev-image"><img src="assets/work/alcaisse.webp" alt="AlCaisse offline retail point-of-sale user interface screenshot." loading="eager" decoding="async"/></div><p class="ev-image-caption">Existing product image from the portfolio. Screenshots illustrate the application, not independent proof of production use.</p>
+</div></section>
+<section class="ev-section"><div class="container ev-two"><div class="ev-section-marker"><span>01 / CONTEXT</span><h2>The problem<br>behind the interface.</h2></div><div class="ev-prose"><p>A retailer cannot afford to lose a sale, corrupt inventory or depend on a remote API at the counter. AlCaisse explores the transaction and recovery rules behind an offline Windows checkout application, rather than relying on a hosted dashboard.</p><div class="ev-flow" aria-label="Operational workflow"><span>Cash session</span><b aria-hidden="true">→</b><span>Barcode</span><b aria-hidden="true">→</b><span>SQLite sale</span><b aria-hidden="true">→</b><span>Stock movement</span><b aria-hidden="true">→</b><span>Receipt</span><b aria-hidden="true">→</b><span>Close session</span></div></div></div></section>
+<section class="ev-section ev-section--shade"><div class="container"><div class="ev-section-intro"><span class="ev-label">02 / ARCHITECTURE</span><h2>Designed around constraints.</h2><p>Technology choices are explained through what they protect or enable, rather than listed as logos.</p></div><div class="ev-proof-grid"><article class="ev-proof"><span class="ev-proof-index">01</span><h3>Desktop boundary</h3><p>The React interface talks through typed Electron IPC. Database and device operations stay inside the main process with Node integration disabled in the renderer.</p><small>Electron · React · TypeScript</small></article><article class="ev-proof"><span class="ev-proof-index">02</span><h3>Local transactions</h3><p>Cash sessions, sales, stock decrements, cancellation and corrections live in SQLite. The project includes an executable critical-path smoke script.</p><small>SQLite · Local data model</small></article><article class="ev-proof"><span class="ev-proof-index">03</span><h3>Hardware and recovery</h3><p>Receipt printing has a test-to-file path and device adapters. Backups and guarded restore are implemented, but printer and drawer results must be verified physically.</p><small>Windows · ESC/POS · Backups</small></article></div></div></section>
+<section class="ev-section"><div class="container"><div class="ev-section-intro"><span class="ev-label">03 / EVIDENCE</span><h2>What can actually be checked?</h2><p>No invented clients, invented numbers or imaginary certifications. Each statement has a clear verification boundary.</p></div><div class="ev-ledger"><div class="ev-ledger-head"><span>CLAIM</span><span>AVAILABLE EVIDENCE</span><span>BOUNDARY</span></div><article class="ev-ledger-row"><h3>Actual desktop source</h3><p>Private Electron entry point, main database service, local backup service, printer adapters and renderer are implemented.</p><p class="ev-caveat">Private repository; source review by authorized arrangement.</p></article><article class="ev-ledger-row"><h3>Executable test scenario</h3><p>scripts/smoke-critical.js checks demo sales, stock changes, cancellation, cash totals and several related business records.</p><p class="ev-caveat">No fresh CI passing run was verified in this audit.</p></article><article class="ev-ledger-row"><h3>Windows release pipeline</h3><p>A Windows package workflow exists with native SQLite binary validation for target CPU architectures.</p><p class="ev-caveat">Pipeline existence does not prove the executable passed on real hardware.</p></article><article class="ev-ledger-row"><h3>Offline-first design</h3><p>Critical checkout persistence uses the local SQLite database and is designed not to require network access.</p><p class="ev-caveat">Power-loss testing, field validation and operational acceptance are still required.</p></article></div></div></section>
+<section class="ev-section ev-section--shade"><div class="container ev-two"><div class="ev-section-marker"><span>04 / ENGINEERING HONESTY</span><h2>What is not<br>proven yet.</h2></div><div class="ev-prose"><ul class="ev-limit-list"><li>A browser presentation is not a runnable Windows desktop demo and cannot validate peripherals.</li><li>Default development PINs and legacy Windows 7 compatibility are security concerns, not production recommendations.</li><li>No confirmed physical ESC/POS printer, cash drawer validation or fiscal certification.</li><li>No asserted real store adoption or performance improvements without evidence.</li></ul><p class="ev-endnote">A responsible prototype is explicit about the tests it passes and the production checks it has not passed.</p></div></div></section>
+<section class="ev-section ev-bottom"><div class="container ev-bottom-layout"><div><p class="ev-label">EXPLORE THE ACTUAL WORK</p><h2>Look beyond the mockup.</h2><p>The public presentation explains the intended checkout workflow. A packaged Windows demonstration and target-hardware acceptance remain the most important next evidence items.</p></div><a class="ev-button ev-button--primary" href="alcaisse-demo.html">Open AlCaisse presentation ↗</a></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="/"><img src="/assets/logo/lyan-pictogram-dark.svg" alt="" class="brand-logo" /><span>Lyan Studio</span></a><p>Founder-led studio · Operational software and internal tools.</p><p class="footer-location">Paris · Remote</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="work.html">Work</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="legal.html">Legal</a><a href="privacy.html">Privacy</a></nav></div></footer>
+<script src="js/main.js"></script>
+</body></html>

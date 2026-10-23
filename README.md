@@ -12,6 +12,13 @@ Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analyt
 
 StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are intentionally not promoted on this website. Their source histories remain in their separate repositories. Product descriptions do not imply customer adoption or production certification.
 
+## Public evidence case studies
+
+- [StayOps — workflow, room-readiness domain model and security boundaries](stayops-evidence.html)
+- [AlCaisse — Electron/SQLite transactions, hardware and local backup boundaries](alcaisse-evidence.html)
+
+These describe private source carefully; only public read-only/product screens are linked. No claimed hardware-validation footage, live authorization coverage or test results are fabricated.
+
 ## Evidence-first product review
 
 See [portfolio product audit (October 2026)](docs/product-portfolio-audit-2026-10.md) for repository-by-repository positioning, limitations, audit scope and priority evidence work. The GitHub profile README and Kepler README were updated to make unverified claims explicit.
