@@ -2,15 +2,22 @@
 
 Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analytics script or production dependency is required.
 
-## Current portfolio (23 October 2026)
+## The four selected projects
 
-- **StayOps** — active hotel team operations software in development.
-- **MyBi** — operational business management tool in use by its creator.
-- **AlCaisse** — offline POS prototype, pending testing on physical hardware.
-- **Kepler Express** — retained secondary logistics operations reference implementation.
-- **IT Ops Desk** — interactive local-browser ITSM demonstrator (fictional records; no authentication or shared database).
+| Project | Domain | Evidence/status |
+|---|---|---|
+| **Kepler Express** | Logistics coordination: client → mission → expense → invoice → payment | Public source and frontend; production adoption not verified |
+| **AlCaisse** | Local Windows POS for neighborhood retail | Client work per developer, real x86 executable supplied, developer reports Windows installation; Electron/SQLite source private |
+| **MyBi** | Microentrepreneur business activity and invoicing | Personally used by developer; source private; no public test account verified |
+| **StayOps** | Hotel operations team coordination: daily queue, housekeeping, maintenance, handovers, supplies/linen | Operations-first implementation merged in PR #6; older read-only demo remains reservation/PMS-oriented |
 
-StorePilot, OpsCore, Vesper and Lyan & Co are discontinued projects and are intentionally not promoted on this website. Their source histories remain in their separate repositories. Product descriptions do not imply customer adoption or production certification.
+This is the **entire public project selection**. Earlier experiments (including IT Ops Desk and deprecated projects) are retained in repository history or at direct legacy URLs but are not promoted as a fifth project. Legacy IT Ops Desk HTML routes are marked noindex and omitted from the sitemap, without deleting source or breaking old direct URLs.
+
+## Evidence boundaries
+
+- The AlCaisse browser simulation under `/alcaisse-demo.html` is *not* the Electron Windows application; it is supplementary and never a transaction system.
+- The StayOps public demo is a read-only, reservation-heavy view of the same project's history. The operations-first source now includes shifts, inventory and team coordination, which are not fully proven through that demo.
+- Private repositories remain private. No production security audit, paid-user count, adoption rate or ROI is claimed.
 
 ## Public evidence case studies
 
@@ -35,19 +42,19 @@ The web lab is a **separately implemented simulator** that uses fictional produc
 
 See [portfolio product audit (October 2026)](docs/product-portfolio-audit-2026-10.md) for repository-by-repository positioning, limitations, audit scope and priority evidence work. The GitHub profile README and Kepler README were updated to make unverified claims explicit.
 
-## IT Ops Desk
+## Legacy sandbox — not a portfolio project
 
-Open `/itopsdesk/` on the site. Run `node --test itopsdesk/core.test.mjs` to test ticket/asset state transitions. See [IT Ops Desk technical notes](itopsdesk/README.md) and [case study](itopsdesk/CASE_STUDY.md). This is an honest portfolio demo, not a production ITSM deployment.
+IT Ops Desk remains accessible only by its historical direct URL and its source stays in this repository. It is not a selected product, is noindexed and is excluded from the public sitemap. Existing tests are retained to avoid breaking the build.
 
 ## Local development
 
 Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory and open `http://127.0.0.1:4173/`.
 
-Run `npm run build` to validate all nine pages, local assets, link fragments, metadata, sitemap coverage and deployment configuration. The build validates the existing static files; it does not generate a separate output folder.
+Run `npm run build` to validate the site's HTML pages, local assets, link fragments, metadata, sitemap coverage and deployment configuration. The build validates the existing static files; it does not generate a separate output folder.
 
-## Routes
+## Main routes
 
-`/`, `/work.html`, `/services.html`, `/about.html`, `/contact.html`, `/legal.html`, `/privacy.html`, `/alcaisse.html`, `/alcaisse-demo.html`.
+`/`, `/work.html`, `/services.html`, `/about.html`, `/contact.html`, `/legal.html`, `/privacy.html`, `/alcaisse.html`, `/alcaisse-evidence.html`, `/stayops-evidence.html` and the supplementary `/alcaisse-demo.html`.
 
 All internal navigation uses these explicit routes. `/index.html` redirects to `/` on Vercel. Production canonical domain: `https://www.lyanstudio.com/`; the apex domain redirects there. Keep the existing domain configuration on Vercel.
 

@@ -92,6 +92,8 @@ for (const page of ["index.html", "work.html"]) {
   for (const current of ["StayOps", "MyBi", "AlCaisse", "Kepler Express"]) {
     assert(body.includes(current), `Current project ${current} missing from ${page}`);
   }
+  assert(!body.includes("IT Ops Desk"),`Non-selected sandbox promoted in ${page}`);
+  for(const project of ["kepler","alcaisse","mybi","stayops"]) assert(body.includes(page==="index.html"?`id="featured-${project}"`:`id="${project}"`),`Missing featured project anchor: ${project}`);
 }
 
 for (const page of pages) {
@@ -131,7 +133,7 @@ for (const term of [
   assert(home.includes(term), `Missing software positioning: ${term}`);
 }
 const sitemap = readFileSync("sitemap.xml", "utf8");
-for(const route of ['/itopsdesk/','/itopsdesk/incidents.html','/itopsdesk/assets.html','/itopsdesk/activity.html']) assert(sitemap.includes(`https://www.lyanstudio.com${route}</loc>`),'Missing IT Ops Desk sitemap route '+route);
+for(const legacy of ['/itopsdesk/','/itopsdesk/incidents.html','/itopsdesk/assets.html','/itopsdesk/activity.html']) assert(!sitemap.includes(`https://www.lyanstudio.com${legacy}</loc>`),'Legacy IT Ops Desk should not be indexed: '+legacy);
 for (const page of pages)
   assert(
     sitemap.includes(
