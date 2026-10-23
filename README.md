@@ -28,7 +28,8 @@ The web lab is a **separately implemented simulator** that uses fictional produc
 - Domain logic: [`alcaisse/core.mjs`](alcaisse/core.mjs)
 - Automated tests: `node --test alcaisse/core.test.mjs`
 - Client interactions: [`alcaisse/app.mjs`](alcaisse/app.mjs)
-- Creator-reported hardware fact: the actual AlCaisse desktop application has been installed and tested locally on a Windows machine. An independently captured installation/field-acceptance report (Windows build SHA, test results, peripherals and OS details) is not supplied; label this a creator report, not a third-party certification.
+- Creator-reported client work: AlCaisse was developed for a client, whose identity is intentionally not disclosed. The developer confirms it was installed and tested locally on Windows. An independently signed customer-acceptance report is not available.
+- Supplied binary inspected: AlCaisse 0.1.0, Windows x86/ia32, NSIS self-extracting portable package (69,625,952 bytes). The uploaded proprietary executable has **not** been committed or offered for public download. See the private `alcaisse/docs/CLIENT_BINARY_EVIDENCE_2026-10.md` for a checksum and detailed inspection.
 
 ## Evidence-first product review
 
