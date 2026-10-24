@@ -2,6 +2,8 @@
 
 Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analytics script or production dependency is required.
 
+**Current project register:** [Four-project map, documentation links and verification boundaries](docs/PROJECT_REGISTRY.md). This register supersedes older audit snapshots for portfolio selection; application repositories remain authoritative for their own source code.
+
 ## The four selected projects
 
 | Project | Domain | Evidence/status |
