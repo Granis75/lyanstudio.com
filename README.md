@@ -10,7 +10,7 @@ Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analyt
 |---|---|---|
 | **Kepler Express** | Logistics coordination: client → mission → expense → invoice → payment | Public source and frontend; production adoption not verified |
 | **AlCaisse** | Local Windows POS for neighborhood retail | Client work per developer, real x86 executable supplied, developer reports Windows installation; Electron/SQLite source private |
-| **MyBi** | Microentrepreneur business activity and invoicing | Personally used by developer; source private; no public test account verified |
+| **MyBi** | Microentrepreneur business activity and invoicing | Personally used by developer; [real web application](https://mybi.lyanstudio.com/); source private; authenticated workflows not independently verified |
 | **StayOps** | Hotel operations team coordination: daily queue, housekeeping, maintenance, handovers, supplies/linen | Operations-first implementation merged in PR #6; older read-only demo remains reservation/PMS-oriented |
 
 This is the **entire public project selection**. Earlier experiments (including IT Ops Desk and deprecated projects) are retained in repository history or at direct legacy URLs but are not promoted as a fifth project. Legacy IT Ops Desk HTML routes are marked noindex and omitted from the sitemap, without deleting source or breaking old direct URLs.
