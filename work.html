@@ -97,12 +97,18 @@
       <section class="section-pad compact work-editorial" id="featured"><div class="container">
  <div class="section-heading"><p class="eyebrow">Selected work / 04</p><h2>Four operational software projects.</h2>
  <p>The same method behind each project: identify what slows down the work, structure a useful process, and make the next action easier. Technical evidence and limitations follow.</p></div>
+ <nav class="work-jump-nav" aria-label="Jump to a project">
+  <a href="#kepler"><span>01 / LOGISTICS</span><strong>Kepler Express</strong><span class="work-jump-outcome">Mission → expenses → invoice</span></a>
+  <a href="#alcaisse"><span>02 / RETAIL</span><strong>AlCaisse</strong><span class="work-jump-outcome">Checkout → stock → receipt</span></a>
+  <a href="#mybi"><span>03 / INDEPENDENT BUSINESS</span><strong>MyBi</strong><span class="work-jump-outcome">Client work → invoice → payment</span></a>
+  <a href="#stayops"><span>04 / HOSPITALITY</span><strong>StayOps</strong><span class="work-jump-outcome">Room readiness → tasks → handover</span></a>
+ </nav>
  <div class="work-gallery"><article class="editorial-case" id="kepler">
  <div class="editorial-case__header"><p class="case-index">01</p><div>
  <p class="case-label">Logistics / Mission Operations</p><h3 class="system-title">Kepler Express</h3>
- <p class="project-status">Reference implementation · Public frontend</p><p class="case-copy">A logistics workflow connecting clients, missions, driver advances, operating expenses, invoicing and payment follow-up.</p></div></div>
+ <p class="project-status">Reference implementation · Public frontend</p><p class="case-copy">Kepler Express models one connected process: a delivery mission, the costs it generates, and the invoice and payment follow-up.</p></div></div>
  <div class="case-context"><div><h4>The operational problem</h4><p>Transport and logistics coordination becomes difficult when missions, expenses and billing are maintained separately.</p></div>
- <div><h4>Product approach</h4><p>Bring execution and financial follow-up into one sequence, with expenses linked to the missions that generate them.</p></div></div>
+ <div><h4>How the work is structured</h4><p>Bring execution and financial follow-up into one sequence, with expenses linked to the missions that generate them.</p></div></div>
  <dl class="system-specs"><div><dt>Core workflows</dt><dd>Clients · Missions · Driver advances · Expenses · Invoices · Payments</dd></div>
  <div><dt>Implementation</dt><dd>React · TypeScript · Supabase</dd></div></dl>
  <div class="browser-frame"><img src="assets/work/kepler.webp" alt="Kepler Express logistics operations application screenshot" loading="lazy" decoding="async" /></div>
@@ -112,9 +118,9 @@
 <article class="editorial-case" id="alcaisse">
  <div class="editorial-case__header"><p class="case-index">02</p><div>
  <p class="case-label">Neighborhood Retail / Grocery Store</p><h3 class="system-title">AlCaisse</h3>
- <p class="project-status">Client project (developer-reported) · Windows x86 build supplied</p><p class="case-copy">An offline-first Windows checkout application for a neighborhood shop: local sales, stock movements, cash sessions, receipts and backups.</p></div></div>
+ <p class="project-status">Client project (developer-reported) · Windows x86 build supplied</p><p class="case-copy">AlCaisse connects each checkout to a cash session, a receipt and a stock movement, with data stored locally on Windows.</p></div></div>
  <div class="case-context"><div><h4>The operational problem</h4><p>A neighborhood store needs a checkout workflow that continues when the internet is unavailable and keeps stock consistent with each sale.</p></div>
- <div><h4>Product approach</h4><p>Keep the checkout, cash sessions, inventory and local backup on the Windows machine using SQLite. The developer reports testing the app on Windows.</p></div></div>
+ <div><h4>How the work is structured</h4><p>Keep the checkout, cash sessions, inventory and local backup on the Windows machine using SQLite. The developer reports testing the app on Windows.</p></div></div>
  <dl class="system-specs"><div><dt>Core workflows</dt><dd>Checkout · Barcode catalogue · Cash sessions · Inventory · Receipts · Backups</dd></div>
  <div><dt>Implementation</dt><dd>Electron · React · TypeScript · SQLite</dd></div></dl>
  <div class="browser-frame"><img src="assets/work/alcaisse.webp" alt="AlCaisse Windows checkout application screen" loading="lazy" decoding="async" /></div>
@@ -124,9 +130,9 @@
 <article class="editorial-case" id="mybi">
  <div class="editorial-case__header"><p class="case-index">03</p><div>
  <p class="case-label">Microbusiness / Invoicing & Business Tracking</p><h3 class="system-title">MyBi</h3>
- <p class="project-status">Used in the developer's own business · Private source</p><p class="case-copy">A business management tool for microentrepreneurs linking client records, assignments, invoices, payments and activity monitoring.</p></div></div>
+ <p class="project-status">Used in the developer's own business · Private source</p><p class="case-copy">MyBi brings client work, issued invoices and payments into one place so an independent professional can follow what remains unpaid.</p></div></div>
  <div class="case-context"><div><h4>The operational problem</h4><p>A microentrepreneur needs one reliable view of clients, jobs, amounts invoiced, money collected and payments outstanding.</p></div>
- <div><h4>Product approach</h4><p>Connect client, mission, invoice and payment records rather than maintain unrelated spreadsheets and manual follow-ups.</p></div></div>
+ <div><h4>How the work is structured</h4><p>Connect client, mission, invoice and payment records rather than maintain unrelated spreadsheets and manual follow-ups.</p></div></div>
  <dl class="system-specs"><div><dt>Core workflows</dt><dd>Clients · Missions · Invoices · Payment tracking · Dashboard</dd></div>
  <div><dt>Implementation</dt><dd>React · TypeScript · Supabase</dd></div></dl>
  <div class="browser-frame"><img src="assets/work/mybi.webp" alt="MyBi client and invoice dashboard screenshot" loading="lazy" decoding="async" /></div>
@@ -136,9 +142,9 @@
 <article class="editorial-case" id="stayops">
  <div class="editorial-case__header"><p class="case-index">04</p><div>
  <p class="case-label">Hospitality / Operational Team Coordination</p><h3 class="system-title">StayOps</h3>
- <p class="project-status">Operations-first platform in development · Source verified</p><p class="case-copy">Coordination of hotel teams: daily work queues, room readiness, housekeeping, maintenance, shift handovers, linen and supplies.</p></div></div>
+ <p class="project-status">Operations-first platform in development · Source verified</p><p class="case-copy">StayOps structures daily hotel work around room readiness, team assignments, incidents and shift handovers.</p></div></div>
  <div class="case-context"><div><h4>The operational problem</h4><p>Hotel operations rely on teams coordinating room readiness, cleaning, incidents and shift changes; reservation records alone do not resolve who does what next.</p></div>
- <div><h4>Product approach</h4><p>Make daily operational work actionable: task ownership, inspection, maintenance blocks, transmissions and inventory movements, with stays retained as context.</p></div></div>
+ <div><h4>How the work is structured</h4><p>Make daily operational work actionable: task ownership, inspection, maintenance blocks, transmissions and inventory movements, with stays retained as context.</p></div></div>
  <dl class="system-specs"><div><dt>Core workflows</dt><dd>Operations today · Housekeeping · Maintenance · Handovers · Linen · Supplies</dd></div>
  <div><dt>Implementation</dt><dd>Next.js · React · TypeScript · Supabase</dd></div></dl>
  <div class="browser-frame"><img src="assets/work/stayops.webp" alt="StayOps hotel operations workspace screenshot" loading="lazy" decoding="async" /></div>
