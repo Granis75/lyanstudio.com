@@ -78,7 +78,7 @@ if (form) {
     const body = encodeURIComponent(requestText());
     window.location.href = `mailto:hello@lyanstudio.com?subject=${subject}&body=${body}`;
     status.textContent =
-      "Your email app has been requested. Review and send the message there. If it does not open, copy your request and email hello@lyanstudio.com.";
+      "No message was sent from this website. If your email app opened, review the draft and press Send there. Otherwise, copy the request and email hello@lyanstudio.com.";
   });
   document
     .querySelector("[data-copy-request]")
