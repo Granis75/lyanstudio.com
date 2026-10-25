@@ -62,7 +62,7 @@ test("presentation session starts open with consistent sample sales and stock",(
  assert.equal(s.sessions.length,2);
  assert.equal(metrics(s).revenue,s.sales.reduce((n,x)=>n+x.total,0));
  assert.equal(s.products.find(x=>x.id==="P-101").stock,22);
- assert.equal(s.products.find(x=>x.id==="P-111").stock,21);
+ assert.equal(s.products.find(x=>x.barcode==="61001011").stock,21);
  assert.deepEqual(hydrate(s),s);
 });
 test("scanning the same barcode twice adds quantity and preserves stock rules",()=>{
