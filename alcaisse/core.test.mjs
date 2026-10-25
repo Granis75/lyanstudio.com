@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {seed,hydrate,activeSession,openSession,closeSession,addToCart,changeCart,checkout,cancelSale,adjustStock,createProduct,metrics,sumCart,formatDZD,escapeHtml,csv} from "./core.mjs";
+import {seed,demoSeed,addBarcodeToCart,hydrate,activeSession,openSession,closeSession,addToCart,changeCart,checkout,cancelSale,adjustStock,createProduct,metrics,sumCart,formatDZD,escapeHtml,csv} from "./core.mjs";
 const at="2026-10-23T12:00:00Z";
 test("synthetic stock, cash-only integer DZD and initial closed session",()=>{
  const s=seed();assert.equal(activeSession(s),null);assert.equal(s.products.length,10);assert.equal(formatDZD(1530).includes("DZD"),true);
@@ -52,4 +52,30 @@ test("backup roundtrip and prevents mismatched version",()=>{
 });
 test("escapes user inputs and sanitizes CSV formulas",()=>{
  assert.equal(escapeHtml('<script>'),"&lt;script&gt;");assert.match(csv([{name:"=SUM(A1)"}],["name"]),/'=SUM/);
+});
+
+test("presentation session starts open with consistent sample sales and stock",()=>{
+ const s=demoSeed(new Date("2026-10-25T12:00:00Z"));
+ assert.equal(activeSession(s)?.status,"open");
+ assert.equal(s.products.length,14);
+ assert.equal(s.sales.length,3);
+ assert.equal(s.sessions.length,2);
+ assert.equal(metrics(s).revenue,s.sales.reduce((n,x)=>n+x.total,0));
+ assert.equal(s.products.find(x=>x.id==="P-101").stock,22);
+ assert.equal(s.products.find(x=>x.barcode==="61001011").stock,21);
+ assert.deepEqual(hydrate(s),s);
+});
+test("scanning the same barcode twice adds quantity and preserves stock rules",()=>{
+ let s=demoSeed(new Date("2026-10-25T12:00:00Z"));
+ s=addBarcodeToCart(s," 61001001 ");
+ s=addBarcodeToCart(s,"61001001");
+ assert.equal(s.cart[0].qty,2);
+ const before=s.products.find(x=>x.id==="P-101").stock;
+ const paid=checkout(s,200);
+ assert.equal(paid.sales[0].lines[0].qty,2);
+ assert.equal(paid.products.find(x=>x.id==="P-101").stock,before-2);
+ assert.throws(()=>addBarcodeToCart(s,"99999999"),/inconnu/);
+ assert.throws(()=>addBarcodeToCart(s,"  "),/obligatoire/);
+ assert.throws(()=>addBarcodeToCart(seed(),"61001001"),/Ouvrez/);
+ assert.throws(()=>addBarcodeToCart(s,"61001010"),/Stock insuffisant/);
 });

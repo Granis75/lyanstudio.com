@@ -4,3 +4,18 @@
 @media(max-width:1260px){.a-sidebar{width:214px;flex-basis:214px}.products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:32px 28px}.a-topbar{padding:0 28px}.a-kpi strong{font-size:25px}}
 @media(max-width:900px){.register-columns,.two-col{grid-template-columns:1fr}.cart{position:static}.a-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-progress{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.a-shell{display:block}.a-sidebar{width:100%;height:auto;min-height:0;position:static;padding:15px}.a-brand{padding:0 4px 16px}.sidebar-label,.sidebar-grow,.side-session,.side-exit{display:none}.a-nav{display:flex;gap:5px;overflow:auto}.a-nav-item{min-width:max-content;padding:10px 11px;font-size:11px}.nav-shortcut{display:none}.a-topbar{height:54px;padding:0 17px}.a-top-overline{display:none}main{padding:27px 16px}.a-heading{display:block}.a-heading h1{font-size:32px}#head-actions{margin-top:18px}.a-disclaimer{align-items:flex-start;flex-wrap:wrap}.a-disclaimer a{margin-left:30px}.register-banner{display:block}.register-banner-inner{padding:24px}.register-banner .banner-side{width:auto;border:0;border-top:1px solid #315949;display:flex;gap:15px;align-items:center;justify-content:space-between}.register-banner .banner-side strong{font-size:25px}.register-banner .banner-side .btn{margin:0}.products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-tile{padding:11px;min-height:152px}.a-panel-head{padding:19px}.a-kpi{padding:16px}.a-kpi strong{font-size:24px}.dlg-fields{grid-template-columns:1fr}.dlg-field{grid-column:1/-1}.a-workspace-flag{font-size:0;padding:9px}.a-workspace-flag .dot{margin:0}}
+
+/* Product scan using USB keyboard-wedge devices or manual sample entry. */
+.barcode-panel{margin:17px 0;border:1px solid #cadfd0;background:#f4f9f3;border-radius:12px;padding:18px 20px}
+.barcode-heading{display:flex;align-items:center;gap:12px;color:#284b39;margin-bottom:12px}
+.barcode-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;background:#deefe0;border:1px solid #cbe3ce;border-radius:10px;font-size:24px}
+.barcode-heading label{display:block;font-size:15px;font-weight:850}
+.barcode-heading small{display:block;font-size:11px;color:#708b78;margin-top:2px}
+.barcode-row{display:flex;gap:9px;align-items:stretch}
+.barcode-input{flex:1;min-width:0;width:100%;border:1px solid #bbd7c5;background:#fff;border-radius:9px;padding:12px 15px;min-height:49px;font:700 17px ui-monospace,SFMono-Regular,Menlo,monospace;color:#1b4933}
+.barcode-input:focus{outline:3px solid #8aca9b;outline-offset:1px}
+.barcode-row .btn{white-space:nowrap}
+.barcode-help{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:11px;font-size:11px;color:#6f8976;line-height:1.6}
+.barcode-example{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;color:#276945;font-size:11px;font-weight:800;padding:0;cursor:pointer}
+.barcode-example:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:700px){.barcode-panel{padding:15px}.barcode-row{flex-direction:column}.barcode-row .btn{width:100%}}

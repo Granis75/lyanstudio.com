@@ -1,7 +1,7 @@
-import {CATEGORIES,seed,hydrate,activeSession,openSession,closeSession,addToCart,changeCart,clearCart,checkout,cancelSale,adjustStock,createProduct,metrics,sumCart,formatDZD,escapeHtml,csv} from "./core.mjs";
+import {CATEGORIES,seed,demoSeed,addBarcodeToCart,hydrate,activeSession,openSession,closeSession,addToCart,changeCart,clearCart,checkout,cancelSale,adjustStock,createProduct,metrics,sumCart,formatDZD,escapeHtml,csv} from "./core.mjs";
 const KEY="alcaisse-web-lab-v2";
 const $=q=>document.querySelector(q), e=escapeHtml, fmt=formatDZD;
-let state;try{state=hydrate(JSON.parse(localStorage.getItem(KEY)))}catch{state=seed()}
+let state;try{state=hydrate(JSON.parse(localStorage.getItem(KEY)))}catch{state=demoSeed()}
 const page=document.body.dataset.page;
 const routes={checkout:"/alcaisse-demo.html",products:"/alcaisse/products.html",stock:"/alcaisse/stock.html",sales:"/alcaisse/sales.html",reports:"/alcaisse/reports.html",sessions:"/alcaisse/sessions.html"};
 const date=iso=>{const t=new Date(iso);return Number.isNaN(t.getTime())?"—":t.toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})};
@@ -21,22 +21,23 @@ function topbar(){
  $("#head-actions").innerHTML=page==="products"?'<button class="btn btn-solid" data-modal="product">＋ Nouveau produit</button>':page==="sessions"?(a?'<button class="btn btn-solid" data-modal="close">Clôturer la session</button>':'<button class="btn btn-solid" data-modal="open">Ouvrir une session</button>'):"";
 }
 function demoProgress(){
- const a=activeSession(state),sold=state.sales.some(x=>x.status==="completed"),moved=state.movements.length>0,visited=state.sales.length>0;
- return '<div class="demo-progress">'+[
-  ["Ouvrir la caisse",!!a||state.sessions.length>0],["Encaisser un panier",sold],["Observer le stock",moved],["Consulter le journal",visited]
- ].map(([x,ok],i)=>'<div class="progress-step'+(ok?" done":"")+'"><b>'+(ok?"✓":i+1)+'</b><span>'+e(x)+'</span></div>').join("")+'</div>';
+ return '<div class="demo-progress" aria-label="Parcours de découverte">'+[
+  "Scanner ou choisir un article","Saisir les espèces reçues",
+  "Valider et consulter le ticket","Vérifier les ventes et le stock"
+ ].map((x,i)=>'<div class="progress-step"><b>'+(i+1)+'</b><span>'+e(x)+'</span></div>').join("")+'</div>';
 }
 function checkoutView(){
  const session=activeSession(state),total=sumCart(state),visible=state.products.filter(p=>(category==="Tout"||p.category===category)&&(!query||[p.name,p.barcode,p.category].join(" ").toLowerCase().includes(query.toLowerCase())));
- const banner='<section class="register-banner"><div class="register-banner-inner"><span class="label">COMPTOIR / CAISSE SIMULÉE</span><h2>'+(session?'Le comptoir est prêt.':'Ouvrez votre session.')+'</h2><p>'+(session?'Scannez un article fictif ou sélectionnez un produit, encaissez en espèces et observez les mouvements de stock.':'La démonstration respecte un principe métier : aucune vente ne peut être enregistrée sans session de caisse ouverte.')+'</p></div><div class="banner-side"><div><strong>'+(session?e(session.id):"FERMÉE")+'</strong><small>'+(session?"Fonds initial : "+fmt(session.opening):"Prêt pour une ouverture de caisse")+'</small></div><a class="btn btn-outline" href="/alcaisse/sessions.html">'+(session?"Voir la session":"Ouvrir la caisse")+" ↗</a></div></section>";
+ const banner='<section class="register-banner"><div class="register-banner-inner"><span class="label">CAISSE DE SUPÉRETTE · DONNÉES FICTIVES</span><h2>'+(session?'Caisse ouverte. À vous de jouer.':'Ouvrez votre session.')+'</h2><p>'+(session?'Une caisse doit servir rapidement : scannez ou choisissez un article, encaissez, puis vérifiez le stock. Ventes et sessions affichées sont des exemples fictifs.':'La démonstration respecte un principe métier : aucune vente ne peut être enregistrée sans session de caisse ouverte.')+'</p></div><div class="banner-side"><div><strong>'+(session?e(session.id):"FERMÉE")+'</strong><small>'+(session?"Fonds initial : "+fmt(session.opening):"Prêt pour une ouverture de caisse")+'</small></div><a class="btn btn-outline" href="/alcaisse/sessions.html">'+(session?"Voir la session":"Ouvrir la caisse")+" ↗</a></div></section>";
  const chips=['Tout',...CATEGORIES].map(cat=>'<option value="'+e(cat)+'"'+(cat===category?' selected':'')+'>'+e(cat)+'</option>').join("");
+ const scanner='<form id="barcode-form" class="barcode-panel" aria-label="Lecture de code-barres"><div class="barcode-heading"><span class="barcode-icon" aria-hidden="true">▥</span><div><label for="barcode-scan">Scanner un code-barres</label><small>Lecteur USB (mode clavier) + Entrée, ou saisie manuelle</small></div></div><div class="barcode-row"><input id="barcode-scan" class="barcode-input" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="Ex. 61001001" aria-describedby="barcode-help"'+(!session?' disabled':'')+'><button class="btn btn-solid" type="submit"'+(!session?' disabled':'')+'>Ajouter au panier</button></div><div class="barcode-help" id="barcode-help">Pas de scanner ? <button type="button" class="barcode-example" data-scan-example="61001001"'+(!session?' disabled':'')+'>Tester le scan de l’eau (61001001)</button><span>Codes fictifs. Aucun accès caméra.</span></div></form>';
  const catalog='<div class="catalog-tools"><input class="search-field" id="product-search" type="search" value="'+e(query)+'" aria-label="Rechercher par nom ou code-barres" placeholder="⌕ Rechercher un produit, code-barres..."><select class="search-field" id="category" aria-label="Catégorie">'+chips+'</select></div><div class="products-grid">'+(visible.length?visible.map(p=>'<button class="product-tile" type="button" data-add="'+e(p.id)+'"'+(!session||!p.stock?' disabled':'')+'><span class="mark">'+e(p.category.slice(0,2).toUpperCase())+'</span><small>'+e(p.category)+'</small><strong>'+e(p.name)+'</strong><span class="tile-bottom"><b>'+e(fmt(p.price))+'</b><small>'+p.stock+' en stock</small></span></button>').join(""):empty("Aucun produit trouvé."))+'</div>';
  const lines=state.cart.length?state.cart.map(line=>{
  const p=state.products.find(p=>p.id===line.productId);if(!p)return"";
  return '<div class="cart-line"><div><strong>'+e(p.name)+'</strong><small>'+e(fmt(p.price))+' × '+line.qty+'</small></div><div class="qty-controls"><button type="button" data-qty="'+e(p.id)+'" data-delta="-1" aria-label="Retirer un '+e(p.name)+'">−</button><b>'+line.qty+'</b><button type="button" data-qty="'+e(p.id)+'" data-delta="1" aria-label="Ajouter un '+e(p.name)+'"'+(line.qty>=p.stock?' disabled':'')+'>+</button></div></div>'}).join(""):'<div class="cart-empty"><span class="cart-illustration">▧</span>Votre panier est vide.<br>Choisissez un produit pour commencer.</div>';
  const cart='<div class="cart-content">'+lines+'<div class="cart-totals"><span>TOTAL ENCAISSEMENT</span><strong>'+e(fmt(total))+'</strong></div><label class="pay-label" for="received">Espèces reçues (DZD)</label><input class="pay-input" id="received" type="number" min="0" max="100000000" step="1" inputmode="numeric" placeholder="Montant reçu" value="'+e(received)+'"><p class="pay-note" id="cash-feedback">Montant entier, aucune transaction réelle.</p><div class="action-row" style="margin-bottom:13px"><button class="btn btn-outline" type="button" data-exact'+(!total?' disabled':'')+'>Montant exact</button><button class="btn btn-outline" type="button" data-clear'+(!state.cart.length?' disabled':'')+'>Vider le panier</button></div><button class="btn btn-solid pay-button" type="button" data-checkout'+(!session||!state.cart.length?' disabled':'')+'>Valider la vente simulée →</button></div>';
  const last=state.sales[0];
- return banner+'<div class="register-columns">'+panel("Catalogue · "+state.products.length+" articles",catalog,"Données fictives")+
+ return banner+scanner+'<div class="register-columns">'+panel("Catalogue · "+state.products.length+" articles",catalog,"Données fictives")+
  panel('Panier <span class="status">'+state.cart.reduce((n,x)=>n+x.qty,0)+' article(s)</span>',cart,"Espèces uniquement")+'</div>'+
  '<div class="a-kpi-grid" style="margin-top:19px">'+card("CA fictif",fmt(metrics(state).revenue),"Net des annulations")+card("Ventes validées",String(metrics(state).sales),"Dans ce navigateur")+card("Alertes stock",String(metrics(state).low),"Seuils inclus")+card("Dernière vente",last?fmt(last.total):"—",last?last.id:"Aucune vente")+'</div>'+
  demoProgress();
@@ -118,6 +119,19 @@ $("#operation-form").addEventListener("submit",ev=>{
 });
 $("#dialog-close").addEventListener("click",()=>$("#form-dialog").close());
 $("#dialog-cancel").addEventListener("click",()=>$("#form-dialog").close());
+function handleBarcode(barcode){
+ try{
+  const next=addBarcodeToCart(state,barcode);
+  const product=state.products.find(p=>p.barcode.toLowerCase()===String(barcode).trim().toLowerCase());
+  commit(next,(product?.name??"Article")+" ajouté au panier.");
+ }catch(err){toast(err.message)}
+ $("#barcode-scan")?.focus();
+}
+document.addEventListener("submit",ev=>{
+ if(ev.target.id!=="barcode-form")return;
+ ev.preventDefault();
+ handleBarcode($("#barcode-scan")?.value??"");
+});
 function showReceipt(id){
  const sale=state.sales.find(x=>x.id===id);if(!sale)return;
  $("#receipt-content").innerHTML='<div class="receipt-paper"><h3>ALCAISSE · DÉMO</h3><p style="text-align:center">Simulation navigateur · aucun reçu fiscal</p><div>'+e(sale.id)+' · '+e(date(sale.at))+'</div><div>Session : '+e(sale.sessionId)+'</div><hr>'+sale.lines.map(l=>'<div class="receipt-line"><span>'+e(l.name)+' × '+l.qty+'</span><strong>'+e(fmt(l.price*l.qty))+'</strong></div>').join("")+'<hr><div class="receipt-line"><strong>Total</strong><strong>'+e(fmt(sale.total))+'</strong></div><div class="receipt-line"><span>Espèces reçues</span><strong>'+e(fmt(sale.received))+'</strong></div><div class="receipt-line"><span>Monnaie</span><strong>'+e(fmt(sale.change))+'</strong></div><p>Statut : '+(sale.status==="completed"?"Vente simulée validée":"ANNULÉE")+'</p><p>NE VAUT PAS TICKET DE CAISSE</p></div>';
@@ -126,9 +140,10 @@ function showReceipt(id){
 $("#receipt-close").addEventListener("click",()=>$("#receipt-dialog").close());
 $("#receipt-done").addEventListener("click",()=>$("#receipt-dialog").close());
 document.addEventListener("click",ev=>{
- const target=ev.target.closest("[data-add],[data-qty],[data-clear],[data-exact],[data-checkout],[data-cancel],[data-receipt],[data-adjust],[data-modal],[data-csv]");
+ const target=ev.target.closest("[data-add],[data-qty],[data-clear],[data-exact],[data-checkout],[data-cancel],[data-receipt],[data-adjust],[data-modal],[data-csv],[data-scan-example]");
  if(!target)return;
  try{
+  if(target.dataset.scanExample){handleBarcode(target.dataset.scanExample);return}
   if(target.dataset.modal){openModal(target.dataset.modal);return}
   if(target.dataset.adjust){openModal("adjust",target.dataset.adjust);return}
   if(target.dataset.add){commit(addToCart(state,target.dataset.add),"Produit ajouté au panier.");return}
@@ -162,5 +177,5 @@ $("#import-json").addEventListener("change",async ev=>{
   if(confirm("Remplacer toutes les données de démonstration locales par cet export ?"))commit(parsed,"Données fictives importées.");
  }catch(error){toast("Import impossible : "+error.message)}finally{ev.target.value=""}
 });
-$("#reset").addEventListener("click",()=>{if(confirm("Effacer les actions de cette simulation et restaurer le jeu de données fictif ?")){query="";category="Tout";received="";commit(seed(),"Simulation réinitialisée.")}});
+$("#reset").addEventListener("click",()=>{if(confirm("Effacer vos actions locales et recharger les ventes et sessions de présentation ?")){query="";category="Tout";received="";commit(demoSeed(),"Données de présentation rechargées.")}});
 render();

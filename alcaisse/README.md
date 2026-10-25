@@ -10,6 +10,17 @@ This code is a **browser-local interactive simulation** for portfolio review. It
 - /alcaisse/reports.html — Reports generated from local test records
 - /alcaisse/sessions.html — Cash session opening and closing
 
+## Try the checkout in seconds
+
+On first visit the checkout opens a fictional session, with 14 shop products and three sample transactions. These are **presentation records only**, not real commercial activity.
+
+1. Type `61001001`, or connect a USB barcode scanner configured as a keyboard with Enter as suffix.
+2. No scanner? Use **Tester le scan de l'eau** or select any stocked product.
+3. Select **Montant exact** then **Valider la vente simulée**; the receipt appears and stock changes.
+4. Use **Recharger les données démo** to start over (requires confirmation).
+
+Browser-local saved demo activity is preserved until the visitor explicitly resets. There is no camera, payment terminal, fiscal certification or physical hardware integration in this web demo.
+
 ## Demonstrated invariants
 - A session must be open to add a product or validate a sale.
 - All displayed monetary values are **integer DZD** (Algerian dinars) and cash-only, matching the intended desktop workflow.

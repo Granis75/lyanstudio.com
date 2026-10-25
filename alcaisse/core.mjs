@@ -32,6 +32,33 @@ export function seed() {
   {id:"P-110",name:"Papier essuie-tout",barcode:"61001010",category:"Hygiène",price:190,stock:0,minStock:3}
  ],sessions:[],sales:[],movements:[],cart:[],events:[]};
 }
+// Presentation-only data assembled through the existing business rules.
+export function demoSeed(now=new Date()){
+ const anchor=new Date(now).getTime();
+ if(!Number.isFinite(anchor))throw new Error("Date de démonstration invalide.");
+ const at=minutesAgo=>new Date(anchor-minutesAgo*60_000).toISOString();
+ let s=seed();
+ for(const product of [
+  {name:"Pâtes 500 g",barcode:"61001011",category:"Épicerie",price:160,stock:22,minStock:5},
+  {name:"Sucre 1 kg",barcode:"61001012",category:"Épicerie",price:150,stock:15,minStock:4},
+  {name:"Thé vert 100 g",barcode:"61001013",category:"Épicerie",price:240,stock:9,minStock:3},
+  {name:"Mouchoirs 10 pièces",barcode:"61001014",category:"Hygiène",price:90,stock:19,minStock:5},
+ ])s=createProduct(s,product,at(1800));
+ s=openSession(s,2000,at(1600));
+ s=checkout(addToCart(addToCart(s,"P-101",2),"P-107"),500,at(1560));
+ s=checkout(addToCart(addToCart(s,"P-102"),"P-104",2),500,at(1520));
+ s=closeSession(s,2740,at(1480));
+ s=openSession(s,1500,at(140));
+ const pasta=s.products.find(p=>p.barcode==="61001011");
+ s=checkout(addToCart(addToCart(s,"P-103"),pasta.id),300,at(80));
+ return s;
+}
+export function addBarcodeToCart(state,barcode){
+ const code=required(barcode,"Code-barres",36);
+ const p=state.products.find(x=>x.barcode.toLowerCase()===code.toLowerCase());
+ if(!p)throw new Error("Code-barres inconnu : "+code+". Vérifiez le catalogue.");
+ return addToCart(state,p.id);
+}
 export function hydrate(input){
  if(!input||input.version!==VERSION)throw new Error("Format de sauvegarde incompatible.");
  for(const field of ["products","sessions","sales","movements","cart","events"])if(!Array.isArray(input[field]))throw new Error("Données invalides : "+field);
