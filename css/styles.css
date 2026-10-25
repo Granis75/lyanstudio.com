@@ -1073,3 +1073,13 @@ input::placeholder, textarea::placeholder { color: #a0a0aa; }
 .case-actions .preview-link{display:inline-flex;margin:0}
 .case-actions .text-link{font-size:.87rem}
 @media(max-width:800px){.featured-grid--four{grid-template-columns:1fr}.case-proof-note{margin-left:0}.case-actions{padding-left:0;gap:16px}}
+
+/* Work case-study shortcuts: four anchored links, no client-side navigation. */
+.work-jump-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:-6px 0 44px}
+.work-jump-nav a{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;padding:17px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);transition:background .2s ease,border-color .2s ease}
+.work-jump-nav a:hover,.work-jump-nav a:focus-visible{background:var(--surface-2);border-color:var(--signal)}
+.work-jump-nav a>span:first-child{font:750 .7rem/1.4 var(--font-mono);letter-spacing:.07em;color:var(--text-2)}
+.work-jump-nav strong{font-size:1.1rem;color:var(--text);line-height:1.25}
+.work-jump-nav .work-jump-outcome{font-size:.78rem;color:var(--text-2);line-height:1.5}
+@media(max-width:980px){.work-jump-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+@media(max-width:520px){.work-jump-nav{grid-template-columns:1fr;gap:8px;margin-bottom:30px}.work-jump-nav a{padding:13px 16px;gap:3px}.work-jump-nav strong{font-size:1rem}}
