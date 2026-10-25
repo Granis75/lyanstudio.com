@@ -49,7 +49,8 @@ export function demoSeed(now=new Date()){
  s=checkout(addToCart(addToCart(s,"P-102"),"P-104",2),500,at(1520));
  s=closeSession(s,2740,at(1480));
  s=openSession(s,1500,at(140));
- s=checkout(addToCart(addToCart(s,"P-103"),"P-111"),300,at(80));
+ const pasta=s.products.find(p=>p.barcode==="61001011");
+ s=checkout(addToCart(addToCart(s,"P-103"),pasta.id),300,at(80));
  return s;
 }
 export function addBarcodeToCart(state,barcode){
