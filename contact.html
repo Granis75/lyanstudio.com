@@ -93,6 +93,10 @@
             Tell us where the work gets stuck, how you handle it today and what
             a useful first release would change.
           </p>
+          <div class="contact-direct">
+            <a class="btn btn-primary" href="mailto:hello@lyanstudio.com?subject=Operational%20tool%20enquiry">Email hello@lyanstudio.com</a>
+            <p>Opens your email app. Nothing is sent until you review the message and press Send.</p>
+          </div>
         </div>
       </section>
       <section class="section-pad compact">
@@ -103,7 +107,13 @@
             action="mailto:hello@lyanstudio.com"
             method="post"
             enctype="text/plain"
+            aria-labelledby="contact-form-title"
           >
+            <h2 id="contact-form-title">Prefer a guided email?</h2>
+            <p class="form-note">
+              Optional: describe your workflow below to prepare a structured email.
+              This site does not send or store your request.
+            </p>
             <label for="contact-name"
               >Name<input
                 id="contact-name"
@@ -164,11 +174,11 @@
               /></label>
             </div>
             <p class="form-note">
-              This form prepares an email in your email app. Review it there and
-              send it to complete your request.
+              After you fill in the required fields, the button opens a pre-filled
+              email in your mail app. You must press Send there to contact us.
             </p>
             <button class="btn btn-primary" type="submit">
-              Prepare email request
+              Open pre-filled email
             </button>
             <p
               class="form-note"
@@ -177,12 +187,12 @@
               aria-live="polite"
             ></p>
             <p class="form-note">
-              If your email app does not open, write to
-              <a href="mailto:hello@lyanstudio.com">hello@lyanstudio.com</a>.
-              You can also
+              No email app configured? You can
               <button class="inline-button" type="button" data-copy-request>
-                copy your request</button
-              >.
+                copy the drafted request</button
+              >
+              and send it manually to
+              <a href="mailto:hello@lyanstudio.com">hello@lyanstudio.com</a>.
             </p>
             <p class="form-note">
               Your details are used to respond to your enquiry. See our
@@ -206,7 +216,7 @@
               </ul>
             </div>
             <p>
-              Prefer email?
+              Direct email:
               <a href="mailto:hello@lyanstudio.com">hello@lyanstudio.com</a>
             </p>
             <p class="footer-location">Paris, France / Remote</p>
