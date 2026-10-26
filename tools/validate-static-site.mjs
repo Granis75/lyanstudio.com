@@ -84,17 +84,26 @@ const titles = pages.map(
   (p) => readFileSync(p, "utf8").match(/<title>([^]*?)<\/title>/)[1],
 );
 assert.equal(new Set(titles).size, pages.length, "Page titles must be unique");
+const work = readFileSync("work.html", "utf8");
 for (const page of ["index.html", "work.html"]) {
   const body = readFileSync(page, "utf8");
-  for (const retired of ["StorePilot", "OpsCore", "Lyan & Co", "Vesper"]) {
+  for (const retired of ["StorePilot", "OpsCore", "Lyan & Co", "Vesper"])
     assert(!body.includes(retired), `Retired project ${retired} promoted in ${page}`);
-  }
-  for (const current of ["StayOps", "MyBi", "AlCaisse", "Kepler Express"]) {
-    assert(body.includes(current), `Current project ${current} missing from ${page}`);
-  }
-  assert(!body.includes("IT Ops Desk"),`Non-selected sandbox promoted in ${page}`);
-  for(const project of ["kepler","alcaisse","mybi","stayops"]) assert(body.includes(page==="index.html"?`id="featured-${project}"`:`id="${project}"`),`Missing featured project anchor: ${project}`);
+  assert(!body.includes("IT Ops Desk"), `Non-selected sandbox promoted in ${page}`);
 }
+for (const current of ["StayOps", "MyBi", "AlCaisse", "Kepler Express"])
+  assert(work.includes(current), `Current project ${current} missing from work.html`);
+for (const project of ["kepler", "alcaisse", "mybi", "stayops"])
+  assert(work.includes(`id="${project}"`), `Missing project anchor in work.html: ${project}`);
+assert(
+  /href="work\.html"[^>]*>View the projects/.test(readFileSync("index.html", "utf8")),
+  "Homepage must link directly to the Work page",
+);
+assert(
+  work.includes('href="alcaisse-evidence.html"') &&
+    work.includes('href="alcaisse-demo.html"'),
+  "AlCaisse must have both Windows case study and browser simulation links",
+);
 
 for (const page of pages) {
   const content = readFileSync(page, "utf8");
@@ -120,10 +129,6 @@ for (const page of pages) {
 const home = readFileSync("index.html", "utf8");
 for (const term of [
   "Operational Software Studio",
-  "MyBi",
-  "StayOps",
-  "AlCaisse",
-  "Kepler Express",
   "dashboards",
   "internal tools",
   "React",
