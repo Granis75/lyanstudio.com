@@ -4,6 +4,18 @@ Static HTML/CSS/JavaScript site. No runtime framework, backend, database, analyt
 
 **Current project register:** [Four-project map, documentation links and verification boundaries](docs/PROJECT_REGISTRY.md). This register supersedes older audit snapshots for portfolio selection; application repositories remain authoritative for their own source code.
 
+## Free-first direction (product policy, not a blanket availability claim)
+
+Lyan Studio's aim is to create practical tools for independent workers and small organizations and to make essential workflows accessible without an artificial trial timer. The preferred long-term model is **genuinely useful free access**, optionally supported by voluntary contributions, and paid setup/support or advanced services only if there is real demand and a sustainable cost structure.
+
+**Current reality is product-specific**:
+- **MyBi** — actual hosted application at https://mybi.lyanstudio.com/. The developer confirms visitors can sign up for free; signup and access permissions have not been independently exercised in this review.
+- **AlCaisse** — public browser checkout **simulation** at https://www.lyanstudio.com/alcaisse-demo.html; it is not a downloadable free production Windows POS and must not be used for real transactions.
+- **Kepler Express** — publicly accessible frontend at https://kepler.lyanstudio.com/; free accounts, data persistence, tenant isolation and end-to-end authenticated use are **not yet validated**.
+- **StayOps** — existing read-only demonstration at https://stayops.lyanstudio.com/demo/workspace; an operations-first publicly usable free workspace has **not yet been validated**.
+
+Opening private source code, declaring all products free for production, offering public accounts, introducing payments/donations, or promising internationally compliant invoicing or retail fiscalization all require their own checks and decisions. Do not publish client code or data. No contribution/payment service has been integrated by this policy statement.
+
 ## The four selected projects
 
 | Project | Domain | Evidence/status |
