@@ -6,6 +6,11 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/alcaisse.html",
+      "destination": "/alcaisse-evidence.html",
+      "permanent": true
     }
   ],
   "cleanUrls": false,
