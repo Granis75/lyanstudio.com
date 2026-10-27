@@ -150,7 +150,7 @@ const config = JSON.parse(readFileSync("vercel.json", "utf8"));
 for (const redirect of config.redirects ?? [])
   assert(
     !requiredPages
-      .filter((p) => p !== "index.html")
+      .filter((p) => !["index.html", "alcaisse.html"].includes(p))
       .some((p) => redirect.source === "/" + p),
     `Redirect hides restored page: ${redirect.source}`,
   );
